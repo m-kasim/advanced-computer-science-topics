@@ -1,0 +1,635 @@
+01. Software Architecture for Big Data and the Cloud. Hyperscalability and management of Big Data.
+https://books.google.com/books?isbn=0128093382
+
+1. Big data introduction. Data warehouses methods vs Big Data problems:
+- The increasing amount of information (and mostly our ability to log it) creates a better demand to manage information
+- Old software practices must be improved in order to match the problems of the age of Big Data
+- [data warehouse]:
+  a large store of data accumulated from a wide range of sources within a company and used to guide management decisions
+- Industry is shifting away from the [data warehouse] approach
+- One of the biggest challenges with Big Data is to link, transform and interpret different data sets from heterogenous systems
+
+7 key aspects of consideration for Software architectures for Big Data:
+- [data warehouses] can exist together with [big data]
+- [data warehouses] are more concerned with reports, while [big data] tools are more concerned with large generalizations and might
+  take more time
+- [data] is processed in from raw format to a finished data, which can be utilized for a service in a _modular fashion_.
+  These is no longer a need to generalize all data so it fits only in one large model
+- Common data models are used to create consistency between different data services. They are not meant to create a singular
+  a single coherent view
+- [Data governance]: it becomes targeted and selective, rather than trying to apply the same standards to all data.
+- [Techniques equalization]: The techniques of [data quality], [lifecycle management] and [protection] are being standardized
+  in order to accommodate all kinds of structured and unstructured data.
+- [Data is now asset]: Data is starting to be seen by organizations now as an asset.
+  Information management practices for [data warehouses] are not enough to solve the diverse problems of [big data]
+
+2. New requirements for Software architectures for big data and cloud.
+- The problem with cloud services is that it creates [silos] of data in different data centers which are isolated
+- Manual labor: the spread of infrastructure data in the cloud still involves a lot of manual labor. There is not enough metadata used
+- [scalability]: For modern software systems which use a lot of data (Social networks, Community systems, and etc.), [scalability]
+  becomes the major requirement inside a [cloud environment]
+- [old software engineering paradigms]: Many of the current software engineering patterns were established 15-20 years ago,
+  when [scalability] was not that important and critical
+- [new requirements]: capacity must grow exponentially and cost must grow only linearly
+- [cloud ownership problem]: organizations no longer have direct control over their data => [data security] becomes an emerging problem
+
+Examples:
+    - Why produce documentation at all, when features change weekly?
+    - Do architecture reviews which take 2 days have a vital role in a world dominated by microservices?
+    - How we can estimate how a system will develop in the future, while the current trend is to base large systems on libraries
+    which are open source - developed by the community - and changing constantly?
+
+3. Software architectures:
+- [Software architectures]: realize and integrate together the requirements of a software
+- [Big data]: Big data is an emerging paradigm applied to datasets whose size is beyond the processing capabilities of current software tools
+to process this data in a reasonable time. Big data is about extracting valuable knowledge from large data sets with variety of types of data inside them.
+
+3.1. 5V properties of Big Data: Va-Va-Ve-Ve-Vo
+- [variety]:    from different sources
+- [volume]:     large size
+- [velocity]:   with fast input/output speed
+- [value]:      it has to provide value upon extracting some knowledge
+- [veracity]:   trusted insight for taking business decisions
+
+3.2. Proposed technologies for Big Data problems:
+- Map-Reduce
+- Parallel-processing databases
+- Scalable storage systems and etc.
+
+3.3. Cloud architecture-significant properties:
+- dynamic access to resources
+- resource pooling
+- elasticity
+- economies of scale
+- multitenancy
+- ability to change during run-time
+
+3.4. Definitions:
+[hyperscalability]:         resources are scaled exponentially, while costs are scaled linearly
+[reference architecture]:   architecture which can be used as the skeleton for building a new system
+[performance isolation]:    isolating tenants from one another
+[real-time analytics]:      data must be analyzed on-the-go, because there's too much data!
+
+[Chapter 1]. Architecture for cloud and Big data:
+- [!]: Not all software requirements can affect the architecture
+- Modern architectures should be build for uncertainty
+- cloud and data are difficult to separate
+- Economics start to affect the cloud architectures more and more: risk avoidance, debt management, practical utilization and etc.
+- the "infinite scalability" of the cloud has made it possible to carry out "data farming"
+- this had led to the hype of "big data" and creating models which can process this data
+- this is how "data-driven services" has now appeared
+
+1.1. Main focus:
+- data management
+
+1.2. Cloud architecturally significant requirements: [MED_SCB]
+[1] Multitenancy:
+- are the requirements of different tenants met?
+- different users, different needs.
+[2] Dynamism:
+- predict behavior and resolve run-time problems
+- tame the unpredictable via autonomous intelligent decisions.
+[3] Elasticity:
+- the degree to which a system is able to increase or decrease allocated resources, based on the work load, so costs are optimal
+[4] SLA constraints (service level agreement constraints):
+- they are constraints on the design as well (availability, reliability, etc.)
+[5] Cloud marketplaces:
+- services which can be leased or bought (depending on their value)
+- "buyer" and "seller" services
+- key features to "sell": modularity, scalability, interoperability...
+- compose "custom architectures" with lowest possible costs
+- avoid technical debt (often when the features do not match the requirements)
+[6] Automatic value seeking:
+- Cloud-based software architectures can dynamically evolve to seek value
+- Improve SLA, QoS, revenue
+- Specify min and max-level constraints: CPU power usage, network, etc.
+- Self-adaptation, based on these constraints
+- services which are seeking value might be risk-averse to meet strict SLA (or reverse)
+[7] Big data management
+- data driven
+- volume, veracity, velocity, variety, value.
+- tradeoffs between data understanding and security and scalability
+- high-speed analytics services
+- Big data technologies: Hadoop, Spark, Pig and Hive, Mahout, Cassandra, CouchDB, HDFS and others
+
+MapReduce:
+- MAP: 1. Map the entire data to individual chunks across clusters which can compute it
+       2. Each cluster computes its own values
+       3. Shuffle phase: the values from all clusters are grouped together based on their data class
+- REDUCE: The values of all repeating data classes are REDUCED to a single value (example: Sum).
+    So, we end up with one class with one value for each unique class
+- Benefits:
+    - calculations are local
+    - no need to move around data
+
+[Chapter 2]: Hyperscalable systems
+1. Hyperscalable systems:
+- Modern systems such as Facebook, Netflix, Twitter require ability to rapidly scale, due to ever growing data and users
+- Systems that do not scale (especially economically) are doomed, or limited to niche usage
+- [hyperscalable systems]: systems which can handle immense amounts of data, so that they can be scaled up effectively with cost and control
+- [hyperscalability]: exponential scaling of capacity, linear scaling of costs
+- Examples: Pinterest.com - every 6 weeks the requests have doubled
+- But they have grew from 2 founds and 1 engineer only to 40 engineers.
+- Cloud storage grew by 10x, however their costs per hour range between 15$ and 52$ per hour
+- [hyperscalable systems]: they break some principles of traditional software engineering. for example, not everything can be tested before deployment
+- instead, systems keep up with affordable and predictable costs of trouble
+
+2. Scalability:
+- [definition]: The ability of a system to expand in order to meet the business' needs.
+                Scalability is achieved by adding extra hardware and not changing much the application's code.
+- [horizontal scaling]: machines with better capacity
+- [vertical scaling]: more machines
+- [scaling] is the most important non-functional requirement in modern SE
+
+3. Scalability limits:
+- Given infinite computing and storage resource, there are still limits how fast an operation can be done, depending on the algorithm
+- Software which is not built to be scalable hardly (if ever) can be properly scaled up
+- [Amdahl's Law]: A theoretical limit exists of how much a task can be speeded up.
+                  The reason is because even though a task can be distributed to smaller parallel tasks, it still takes time
+                  to merge back the smaller tasks to a serialized result.
+                  So, the maximum speedup of an algorithm can be calculated too.
+- [Gustavson's Law]: It is possible to increase the computation speed, if larger chunks are delivered to more powerful separate clusters
+                     (while maintaining the same amount of clusterization or cluster entities
+- [Data skew]: one of the clusters have more data to process, so it "locks" the completion, because all classes must be present
+                in a finalized state, in order for comparison (or whatever operation) to commence.
+
+4. Princuples of hyperscalable systems
+[1]: Automate and optimize cost control
+- automation: - [Simian Army]: netflix.com cannot be shutdown. instead, it is updated while it is live and monitored.
+              - [old and new components deployed together]: deploy the new component, together with the old and verity their work
+              - gradually increase the load from 1% to 100% on the new component
+              - load balancing of database shards
+              - elastic load balancing: deploy new resources and unemploy them when the demand disappears
+
+- optimization: - premature optimization in hyperscaling can really make a positive difference!
+                - Example: Facebook was written in PHP. Then PHP was compiled to HPHPc (PHP compiled to C++) and executed via VMs => 6x speed
+
+[2]. Simplicity = Scalability:
+ - Example: NoSQL is better for scaling because it has less strict consistency requirements
+ - NewSQL: Use principles of NoSQL while also adhering to the ACID principles
+ - less consistency requirements => more scalability possibilities
+ - Disk based queues are more reliable. Memory based queues are less reliable, but faster
+
+[3]. Stateless services:
+- [stateful services]: Java
+- poor performance in scalability - they consume resource for the duration of the entire session
+- if they are shut down irregularly - active until timeout is detected
+- [stateless services]: any instance can serve any request (provided the request has a secure session token)
+- REST
+
+[4]. Observability:
+- monitor, analyze and react to trigger events
+- better monitoring leads to better management
+- requirements in the architecture of the application: logging and analysis modules
+- There are no universally applicable tools. Hyperscale companies build their own observability solutions.
+
+Example:
+- model driven architecture described by Twitter:
+    [model driven architecture] + [tools] + [runtime framework] + [big data storage]
+Other:
+- [Systems of systems]:         Primarily defense systems which are acquired (not built) must be integrated together
+- [Ultra Large Scale systems]:  Applications in smart cities, energy grids and others.
+    - Decentralization
+    - Complex and conflicting requirements
+    - Cannot be stopped to be upgraded. Continuous running required
+    - Usage metrics dictate new requirements
+    - Software and hardware failures are the norm
+
+[Chapter 3]: Architecting to deliver value from a Big data and hybrid cloud architecture
+- Organizations want to extract value from Big data
+
+1. Analytics lifecycle:
+- [Analytics lifecycle]: The process to undertake new analytics
+- [!] [Analytics Model] - Architecture to deliver value from Big Data
+    1. [Discovery]:     Locate the data
+    2. [Exploration]:   Build analytics models
+    3. [Deployment]:    Run analytic models in a system which will deliver value
+
+2. Data lakes and Data reservoirs:
+- [data lakes]: - is an analytics system, which supports [storage] and [processing] of all kinds of data
+                - data in its natural form (BLOB or files) from various sources
+                - data scientists select various [datasets] from the data lake
+
+- [problems]:   - data is hard to find within the [data lake]
+                - origin is hard to identify
+                - once active, control is hard to maintain
+                - Example: often a developer needs some data from the data lake, but he cannot find it easily.
+                  He makes a copy of the portion of the data. Data duplication and unused data start to accumulate increasing costs
+
+- [data lake] + [management] + [metadata] = [data reservoir]
+
+- [good data lake architecture]:
+- organized data sets: description, metadata, ownership.
+- support for execution within the data lake
+- management and security features
+- trust and confidence to share and consume the data
+- [!]: avoid data duplication in order to avoid extra costs
+
+3. Best practices in [IoT] for [Data lakes]:
+- Centralized data lake analysis of IoT data:
+- [problems]:   - transferring all the raw data from the [sensors] to the [data lake] is time-consuming and often sub-optimal
+                - processing in the [data lake] is time-consuming
+- [solution]:   - processing closer to the [sensors]: only relevant and optimal data (no activity since 00:30AM) is transmitted
+
+4. Big data system types (4):
+- systems which [capture] and [analyze] Big Data:
+- 4.1[systems of engagement]:
+    - they interact with people
+    - data: videos, pictures, audio...
+    - gain data about their [needs] and [patterns]
+    - analytic action: able to make recommendations
+
+- 4.2[systems of automation] / [IoT systems]:
+    - interact with an environment in order to capture data about an [asset]
+    - data: stream of events
+    - analytic action: optimize performance and predict
+
+- 4.3[system of record]:
+    - traditional systems used within organizations
+    - they are not Big Data, but they contribute in the context of Big data
+
+- 4.3[system of insight]:
+    - it is often the actual [data lake]
+    - it aggregates data from all other systems via "data gravity" and creates insight from that data
+
+5. Organization silos => Common standards and descriptions required:
+- data might be stored in isolated [silos] because separate departments work with their own domain
+- data might be stored with local "tribal vernacular" (Example: 5th field of the address is always a message to the postman)
+- [!] In reality [Big data] is not about Big data at all. It is about computing the [Small data] locally on the device,
+      detect patterns, and communicate these patterns via short messages with the [Data lake], so intelligent decisions can be created.
+
+- [MDM hub]: Master Data Management hub: simplify and integrate data together based on common attributes
+
+6. Metadata:
+- all data has to have standardized metadata, to be integrated in big data analytics
+
+[Chapter 4]: Domain-Driven Design of Big Data Systems Based On A Reference Architecture
+- Domain-driven approach for designing Big data systems
+- [feature model]: model with common and variant features of the model
+- [Apache Hadoop]: Collection of software utilities to compute massive amounts of data on many computers. Based on the MapReduce model.
+
+1. Domain-driven design for Big Data:
+- 1.1. Domain Engineering:
+       [Papers] ==> [Domain Model]==> [Reference Architecture] ==> [Design Rules]
+                            |
+                            | [domain scoping]
+                           \|/
+System                          Stakeholders
+  |                                 |
+ / \                                /\
+/   \feature               interest/  \interest
+feature                   interest/    \ interest
+      \ feature
+                            |
+                           \|/
+                  [family feature model]
+
+- 1.2. Application Engineering:
+- creating the actual [application architecture] from the [family feature model] and [reference architecture]
+
+2. Reference architecture for Big Data:
+- [software reference architecture]: generic architecture which is used as a foundation for designing specific architectures
+                                     from that class. functionalities are divided to modules which exchange data between them
+
+- [reference architecture for big data]:
+[DATA] --> [DATA PROCESSING] -->                              [DATA ANALYTICS] --> [INTERFACE & VISUALIZATION]
+                                 \  [INFORMATION MANAGEMENT] /
+                                  \ [DATA STORAGE]          /
+
+3. Reference architecture for Big Data systems. Detailed overview:
+1. [DATA]:
+- [mobility]:       batch, streaming.
+- [structure]:      unstructured, semi-structured, structured.
+- [processing]:     raw, processed, analyzed.
+- [security]:
+- [modality]:
+
+2. [INFORMATION MANAGEMENT]:
+- [staging]:                    acquire data
+- [access & performance]:       data access and navigation
+- [foundation]:                 isolate data from business processes so it cannot be modified
+
+3. [INTERFACE & VISUALIZATION]:
+- dashboarding and reporting
+
+4. [DATA PROCESSING]:
+- [definition]: prepare and compress the data to various consumable formats for further processing
+- [processing]: - information extraction: classification, entity recognition, relationship extraction, structure extraction
+                - data integration
+                - in-memory processing
+                - data ingestion
+- [stream processing]:  filtering, annotation.
+- [batch processing]:   cleaning, combining, replication.
+
+5. [DATA STORAGE]:
+- querying, indexing, distributed systems, data model, meta-data management, DB features
+
+6. [DATA ANALYSIS]:
+- stream analysis
+- high level analysis
+- ad hod analysis
+- event processing
+- deep analysis
+
+6.1. [stream processing]:
+- real time processing with quick responses.
+- no increased memory needed
+- no time-intensive storage operations
+- Online analytical processing (OLAP cube) is a computer-based technique of analyzing data to look for insights (it's a multidimensional array)
+- [types]:  1. metric computation
+            2. status collection
+            3. filtering
+            4. tokenization
+            5. annotation
+
+6.2. [batch processing]:
+1. combining
+2. cleaning
+3. replication
+
+6.3. [in-memory processing]:
+- high speed query processing
+- results caching
+
+[Chapter 5]: An Architectural Model-based Approach to Quality-aware DevOps in Cloud Applications
+1. [DevOps]: umbrella term, for practices which help developers to work more closely reducing time between
+            changing systems and ensuring high quality
+2. [iObserve Model]:
+- Model-driven monitoring
+- iObserve first filters and aggregates monitoring data.
+- Then it allocates monitoring data to architectural model elements
+- Finally it uses aggregated data to update the architectural runtime model by a transformation T. (which relates development and operational abstractions)
+- this agility leads to => Quality-aware DevOps
+- via linking architectural elements to source code traces a communication between the operation and development layers is possible
+- Summary:
+The iObserve model is a megamodel for cloud systems.
+It facilitates to link the development and operation abstractions of a system.
+By the data which is gathered in these abstractions, iObserver is able to recommend transformations T which might or might not be automatic.
+Moreover, iObserver provides 2D/3D visualization of the exchanged data, of the status of the software components and of the base architecture.
+
+[Chapter 6]: Bridging ecology and cloud: Transposing ecological perspective to enable better cloud autoscaling
+- viewing cloud QoS from ecological balance point of view. analogy with bio ecosystems
+
+[Chapter 7]: Evaluating Web PKIs
+- [Big Data]: Massive amounts of digital information generated from multiple sources (social media, sensors, payments, phones, IoT...)
+- Security of Big Data via [public key encryption
+
+1. [PKI]: Public Key Infrastructure
+- [definition]: policies and procedures needed to create/distribute/manage digital certificates and use public key encryption securely
+- [purpose]: verify that an entity has a genuine copy of a public key. Example: verify that the SSL certificate of a website X is really issued by the CA
+            (and it is not bogus certificate which is issued by someone who misrepresents themselves)
+
+2. Benefits of PKI:
+- entity authenticity
+- data authenticity
+- data confidentiality
+- data integrity
+- verification of results
+- privacy preserving data mining
+    *) fully homomorphic encryption: such a program need never decrypt its inputs, it can be run by an untrusted party without revealing its inputs and internal states
+    *) multiparty computation:  methods for parties to jointly compute a function over their inputs while keeping those inputs private
+
+3. PKI security:
+- [certificate authority]: issues certificates (public key) and private keys. it is assumed to be "trustworthy". :)
+- [certificate revocation]: no effective way, because the root CA DBs are already deployed to the clients who trust them.
+
+4. Problems of current PKI certificate authorities:
+- [public logs]: logs are not for all certificates (so certificates can be better cross-verified)
+- [trust agility]: ability to select which CA to trust. Prevent different CA to influence each other
+- [anti-oligopoly]: few US organizations have an oligopoly on the market on CA
+
+5. Desired features of secure PKI:
+
+[TRUST]:
+1. [trust agility]:              decide which services and CA to trust manually. different services should not influence each other
+2. [free of trust parties]:      there is no need for central CA to be trusted
+3. [verifiable trusted parties]: behavior of CA is transparent and can be verified
+4. [anti-oligopoly]:             support for self-issued certificates and no need for central verification
+
+[AVAILABILITY]:
+1. [offline verification]:       verify without the need to connect to other parties
+2. [built-in key revocation]:    dynamic self-reliant key revocation
+3. [scalability]:
+4. [multiple certificates support]:
+5. [fast key verification]:      when a certificate is issued, it takes some time until all clients start to trust it
+
+[SECURITY]:
+1. [first connection protection]:
+2. [DoS protection]:             prevent users from being unable to verify
+3. [mis-issued certificate prevention]
+4. [detect mis-issued certificates]
+5. [provably secure]:            formal verification via calculation
+
+[USABILITY]:
+1. [no user involvement]:       no need to manually involve users in verification
+
+[PRIVACY]:
+1. [protect browsing history]:
+
+6. Certificate management systems
+
+6.1. Classic:
+- Good scalability. Forced to trust CA. Cannot prevent MIDM attacks due to slow revocation process
+
+6.2. Difference Observation:
+- Monitor CA and detect whether the offered certificates from this CA are different from the certificates other clients get from this CA
+
+6.3. Double check:
+- Query the certificate through 2 ways: TLS and Tor
+
+6.4. Convergence:
+- Use a proxy server before the actual server which resolves the certificate query
+
+6.5. Scope Restriction:
+- Restrict the power of CA
+- PKP: Public key pinning: Explicitly name which CA are trusted for the domain
+- DANE: Store the CA in the DNS records
+
+6.6. CAge:
+- Restrict the scope of domains for which a CA can issue a certificate for
+
+6.4. Certificate Management Transparency:
+- Public logs of all issued certificates
+- [Sovereign key]: long-term TLS key for the domain
+- [Certificate transparency]: Make public all issued certificate by CA. Store them in an append-only Merkle tree. Logarithmic search
+- [Accountable key infrastructure]: Allow domain owners to specify which CA to trust and other attributes.
+    The domain has to accept a minimum amount of CA (so multiple CA sign a single certificate).
+    The domain has to be inserted in the common log.
+- [Certificate Issuance and Revocation Transparency - CIRT]:
+- Store in two Merkle trees the list of certificates for a domain
+
+[Chapter 8] Performance isolation in cloud-based Big data architectures
+- caching frequently used resources
+
+1. Methods
+1.1. [artificial delay]: for disruptive tenants
+1.2. [round robin]: First-In-First-Out: Spread the resource based on incoming requests
+1.3. [blacklist]: After N disruptive requests, puts the tenant in the blacklist queue
+1.4. [thread pool]: Each tenant has a limit of threads that it can use from the pool
+
+2. Lambda reference architecture for Big Data:
+- [batch processing layer]:
+- [real-time processing layer]: shows realtime data (inaccurate)
+- [serving layer]: hosts precomputed batch views
+
+[Chapter 10] Big Data: A practitioner's perspective
+1. Big data
+- [definition]: "Data sets so large or complex that traditional data processing applications are inadequate for them"
+- [characteristics]:
+    1. velocity
+    2. veracity
+    3. variety
+    4. value
+    5. volume
+
+2. Open source software leads the way in Big data analytics.
+
+3. Big data pitfalls
+- Focusing on the latest technology hype instead of business needs
+- Big data transition: Use only [big data solutions] or [big data]+[data warehouse] (each option has [+] and [-])
+
+[Chapter 11] A taxonomy and survey of Stream processing systems:
+1. General:
+- The world has created 90% of its data during the last 2 years
+- Data might lose its value if stored for later processing
+- Processing needs to be done real-time
+
+2. Stream processing types:
+- [1] Data stream management systems where online query languages have been explored
+- [2] Online data processing algorithms where the goal is to process the data in a single pass
+- [3] Stream processing platforms which enable implementation and scaling of stream-based applications
+
+3. Stream processing systems:
+- it is an alternative to [batch processing]
+- synchronous streams of data with small reactive chunks
+- designed to run of top of distributed and parallel systems to process data  in real-time
+- in their core, they are message passing systems
+- dataflow
+- processing in memory
+- they rely on cluster computing (often)
+- sources: various sources
+- data order cannot be controlled
+- their size is potentially infinite
+- actual data is often discarded after processing, making it hard to retrieve
+- their design is driven by data
+
+4. Requirements for stream processing systems:
+- Low latency: Keep the data moving in order to reduce latency
+- Handle stream imperfections: Built-in mechanism to deal with stream imperfections
+- Queries: Allow queries via SQL
+- Predictable outcome generation
+- Integrate different sources
+- Guarantee data safety and integrity despite outages
+- Scaling and partitioning
+- Instant processing
+
+5. Architecture
+- [SOURCE] --> [PROCESSING NODE] --> [SINK]
+
+Twitter Storm
+
+[Source nodes] ---> [Processing nodes] --> [Sink]
+
+[spout]
+        \___________[bolt]___________
+[spout] /                            \____[sink]
+        \___________[bolt]___________/
+[spout] /
+
+6. Stream processing taxonomy:
+    6.1. Functional aspects
+    [queue messaging component] ---> [execution component]
+
+    6.1.1. Data streaming
+        1. [Data ingestion]: additional activity to format the data so it fits the stream processing component
+            - Source identification: [stored] or [streaming] data
+            - Data type conversions
+        2. [Queue and Message passing]
+            - PAIR: 1 to 1 only
+            - Client request / Server process
+            - Push/Pull pipeline
+            - Publish/Subscribe - to those who are subscribed only
+
+    6.1.2. Data execution: arrange the data for processing
+        1. Scheduling: a lot of applications allow the user to choose/define its own scheduling
+            - First-In-First-Out
+            - Minimum capacity: Guarantees capacity
+            - Fair: Allocate the same resources to each task
+        2. Scalability: increase processing of increasing amount of tasks, without modifying the architecture and functionality much
+        3. Distributed computation: The majority of architectures for scalability are built on distributed architectures
+
+    6.1.3. Data processing
+        3. Stream processor:
+            - Stream processing platforms (like Twitter Stream) allow local nodes to make customizable requests/custom apps to the data stream
+
+    6.1.4. Fault tolerance: Failure of a single/multiple nodes should not affect the entire system
+        6.1.4.1. System's Proper Operation
+            - Data replicate
+            - Restart
+        6.1.4.2. Guaranteed Data Processing
+            - Recovery
+            - State management
+
+        - Twitter uses timeouts to detect whether a piece of data has been processed, before letting the next chunk in
+        - "at least once" method is secure, but sometimes the message is sent more than once to the user
+
+    6.2. Non-functional aspects
+        6.2.1. Cost
+        6.2.2. Technical support
+        6.2.3. Community
+
+7. Stream Processing Platforms:
+
+    7.1. DSMS (Data Stream Management System):
+        - Handle continuous online queries with query-language like CQL for real-time data query processing
+    7.2. CEP (Complex Event Processing):
+        - Identify important events within a stream
+        - An improvement over DSMS (it can detect a group of queries = events)
+    7.3. Stream Processing Platforms / Engines:
+        1. Apache Storm: spouts -> bolts -> sink
+        2. Yahoo S4 (Simple Scalable Stream System): based on MapReduce, scalable for real-time processing
+            - an adapter converts the sequence of raw data to events
+        3. Apache Samza: Used by Linkedin. Streaming / Execution / Processing layers
+        4. Spring XD
+            - Can do both stream or batch processing of Big data
+
+[Chapter 12] Architecting Cloud Services
+1. Services:
+    - A single service is stand-alone and does not rely on other services to fulfill its job
+    - Each service has a name, description
+    - Data types which are exchanged by this service
+    - Semantics: the functionality provided by the services
+
+2. Service composition:
+    - Re-usability: They have to be privacy-aware and re-usable
+    - Privacy: It is hard to control personal data, once it is passed to a service and used by also other services
+    - Loose coupling: Users should be able to use highly decoupled services and control the permissions of the data they provide
+
+3. Model Driven Engineering:
+- It encompassed the most common features of a domain and is able to create a GPL (General Programming Language) sample code,
+  which can be used as a starting point for coding
+
+4. Architecture Description Languages (ADL);
+- they describe components, connections and interfaces
+
+5. Systems of Systems:
+- Created via re-use of components
+- ACID principle:   Atomic. Consistent. Isolated. Durable.
+- CAP-theorem:      Consistent. Available. Partition-Tolerant
+- SQL DBs adhere to the ACID principles, but are too restrictive.
+- NoSQL DBs scale better, but allow data duplication and JOIN operations are costly
+- Example:
+    User users LoginService, which uses AuthService which uses TokenService to authenticate the user to the PersonalDataService
+- Generative approach: Wrappers Components are generated dynamically based on criteria and they have attached convertors for the calling service
+- Service-oriented architectures limit the data control, and let engineers focus on the overall functioning of the system to meet its requirements
+
+[Chapter 13]: Re-engineering Data-Centric Information Systems
+- IDEAL characteristics of cloud applications:
+    [I]solated state
+    [D]istribution
+    [E]lasticity
+    [A]utomated management
+    [L]oose coupling
+- [data paralelism]: compute data on a cluster
+- [compute centric apps]: small input, large output. the entire dataset must be read by each computing node, thus networking is not an option
+- [big data apps]: data centricity in mind
