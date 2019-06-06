@@ -1,0 +1,120 @@
+Big Data. Datafication. Data quality. Data collection, cleaning, linking, processing, analysis and delivery. Data Lakes and Data warehouses. Uses.
+
+1. Big Data:
+- [definition]:
+    Big data is a term for data sets which are too large or complex to be dealt with by traditional data-processing applications
+
+2. Datafication:
+- [definition]:
+    Analysis of representations of different aspects of live through models which capture, generate and visualize data so their characteristics,
+    behavior and usage could be better understood and utilized.
+    Primary data from various sources (mobile phones, social networks, public feeds) are utilized to generate secondary data.
+- [examples]: how changing the characteristics of a real-life model or process influence other processes
+
+- [examples]: street lights in Amsterdam rivers have been upgraded to emit light with brightness based on the amount of nearby citizens
+- [industries influenced by datafication]:
+    1. 💁‍ Human Resources: Data obtained from mobile phones, apps or social media usage is used to identify potential employees and their specific characteristics such as risk taking profile and personality.
+    2. 💵 Insurance and Banking: Data is used to understand an individual’s risk profile and likelihood to pay a loan.
+    3. 🎛 Customer relationship Management: Various industries are using datafication to understand their customers better and create appropriate
+        triggers based on each customer’s personality and behavior. This data is obtained from the language and tone a person uses in
+        an email, phone call or social media.
+    4. 🎢 Smart cities: Smart city: Through the data obtained from the sensors that are implemented into the smart city, issues that can arise
+        might be noticed and tackled in areas such as transportation, waste management, logistics, and energy.
+
+3. Data quality.
+- [definition]: fit for [its] intended uses in operations, decision making and planning"
+- [characteristics]: accuracy, completeness, consistency, timeliness, validity, and uniqueness
+- Also known as "veracity"
+- as data volume increases, the question of internal data consistency becomes significant
+- ISO 9000:2015 - the degree to which a set of characteristics of data fulfills requirements.
+- 2002, the USPS and PricewaterhouseCoopers released a report stating that 23.6 percent of all U.S. mail sent is incorrectly addressed
+  -  more than 45 million Americans change their address every year!
+- [data governance teams]: manage data quality
+- Problems with data quality don't only arise from incorrect data; inconsistent data is a problem as well
+- [data quality assurance]: is the process of data profiling to discover inconsistencies and other anomalies in the data,
+- [example]: if a Data QA process finds the data contains too many errors or inconsistencies, then it prevents that data from being used for its intended process
+- There are a number of scientific works devoted to the analysis of the data quality in open data sources (Wikipedia, Wikidata, DBpedia and etc.)
+
+4. Data collection, cleansing, linking, processing, analysis and delivery.
+1. 🐣 [data collection]:
+- gathering quality data from target variables in order to answer specific questions via later analysis.
+- the gathered data can be used in a [quantitative](numeric/computational) or [qualitative](non-numeric) manner
+
+2. 💦 [data cleansing]:
+- detecting and correcting (or removing) corrupt or inaccurate records from the data
+- converting from one (raw) format, to another more appropriate format (interactively or via batch processing)
+- [data cleansing] is different from [data validation], because it does not completely reject the data on input, but rather corrects it
+- [algorithm]: correct typographical errors or check values against a known database with reference values
+- [data enhancement]: add additional relevant information to the original data
+- [standardization of data]: after cleansing, the data set should be consistent with other data sets in the system
+- [process]: Data auditing ->  Workflow specification -> Workflow execution -> Post-processing and verification
+
+3. 🔀 [data linking]:
+- [definition]: bringing together numerous sources of data and linking interrelated pieces of information across the various sources.
+- increase accuracy, eradicate duplication
+- Data linking methods are designed into software applications to better the accuracy of data.
+- updating an existing database with periodic activity, while retaining a constant key.
+
+4. [data processing]:
+- [definition]: the collection and manipulation of items of data to produce meaningful information
+
+- [definition]: prepare and compress the data to various consumable formats for further processing
+- [processing]: - information extraction: classification, entity recognition, relationship extraction, structure extraction
+                - data integration
+                - in-memory processing
+                - data ingestion
+- [stream processing]:  filtering, annotation.
+- [batch processing]:   cleaning, combining, replication.
+
+5. [data analysis]:
+- stream analysis
+- high level analysis
+- ad hod analysis
+- event processing
+- deep analysis
+
+6. [data delivery]:
+
+5. Data Lakes and Data warehouses.
+2. Data lakes and Data reservoirs:
+- [data lakes]: - is an analytics system, which supports [storage] and [processing] of all kinds of data
+                - data in its natural form (BLOB or files) from various sources
+                - data scientists select various [datasets] from the data lake
+
+- [problems]:   - data is hard to find within the [data lake]
+                - origin is hard to identify
+                - once active, control is hard to maintain
+                - Example: often a developer needs some data from the data lake, but he cannot find it easily.
+                  He makes a copy of the portion of the data. Data duplication and unused data start to accumulate increasing costs
+
+- [data lake] + [management] + [metadata] = [data reservoir]
+
+- [good data lake architecture]:
+- organized data sets: description, metadata, ownership.
+- support for execution within the data lake
+- management and security features
+- trust and confidence to share and consume the data
+- [!]: avoid data duplication in order to avoid extra costs
+
+3. Best practices in [IoT] for [Data lakes]:
+- Centralized data lake analysis of IoT data:
+- [problems]:   - transferring all the raw data from the [sensors] to the [data lake] is time-consuming and often sub-optimal
+                - processing in the [data lake] is time-consuming
+- [solution]:   - processing closer to the [sensors]: only relevant and optimal data (no activity since 00:30AM) is transmitted
+
+- [data warehouse]:
+  a large store of data accumulated from a wide range of sources within a company and used to guide management decisions
+- Industry is shifting away from the [data warehouse] approach
+- One of the biggest challenges with Big Data is to link, transform and interpret different data sets from heterogenous systems
+
+7 key aspects of consideration for Software architectures for Big Data:
+- [data warehouses] can exist together with [big data]
+- [data warehouses] are more concerned with reports, while [big data] tools are more concerned with large generalizations and might
+  take more time
+
+6. Uses cases:
+1. Customer analytics: 360° View of the Customer
+2. Operational analytics: Optimization of business processes and costs
+3. Fraud Prevention: Security and compliance
+4. Data driven products and services
+5. Optimize enterprise data warehouse (EDW): Regulate costs, provide better analytics in the era of Internet of Things

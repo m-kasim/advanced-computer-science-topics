@@ -1,1 +1,12 @@
 Artificial Intelligence. Goals. Machine learning: Supervised, unsupervised and semisupervised learning. Types of approaches.
+
+1. General:
+- [Data Mining]:
+    Extract certain key features or metrics from data. Algorithms vary depending on the data domain.
+- [Machine Learning]:
+    Study and learn from data sets in order to discover patterns and predict future patterns.
+- [Real-time Processing]:
+    Also called "Stream Processing". New hardware capabilities make it possible to process now data in real-time.
+    Data is processed, queried and analyzed immediately, unlike [batch processing], which stores data for later processing in bulk.
+- [Graph Processing]:
+    Many domains can be represented as graphs, as this resembles their natural features.
