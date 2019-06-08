@@ -76,6 +76,8 @@ Big Data. Datafication. Data quality. Data collection, cleaning, linking, proces
 6. [data delivery]:
 
 5. Data Lakes and Data warehouses.
+- [explanation]: https://www.forbes.com/sites/bernardmarr/2018/08/27/what-is-a-data-lake-a-super-simple-explanation-for-anyone/#246aecdd76e0
+
 2. Data lakes and Data reservoirs:
 - [data lakes]: - is an analytics system, which supports [storage] and [processing] of all kinds of data
                 - data in its natural form (BLOB or files) from various sources
@@ -116,5 +118,5 @@ Big Data. Datafication. Data quality. Data collection, cleaning, linking, proces
 1. Customer analytics: 360° View of the Customer
 2. Operational analytics: Optimization of business processes and costs
 3. Fraud Prevention: Security and compliance
-4. Data driven products and services
+4. New Data driven products and services discovery
 5. Optimize enterprise data warehouse (EDW): Regulate costs, provide better analytics in the era of Internet of Things

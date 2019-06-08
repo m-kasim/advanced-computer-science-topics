@@ -1,0 +1,244 @@
+Advanced practices and frameworks in SE: DAD (Disciplined agile delivery ).
+DSDM (Dynamic systems development method). Kanban. PSP (Personal Software Process ).
+SafE (Scaled Agile Framework). SEMAT. TSP (Team Software Process).
+
+1. Software Engineering:
+- [definition]: Software engineering is the application of engineering to the development of software in a systematic method.
+
+2. Advanced practices and frameworks in SE:
+- [globalization impact]:
+    - globalization has been one of the drivers for outsourcing and the migration of software development to India, Russia, Eastern EU and China.
+    - this leads to problems with communication due to distance, timezone and cultural difference
+    - [different use cases]: since organizations have different sizes and needs, it is natural that no single SE framework could be
+        universally applied in all use cases. Rather, stakeholders must gather together and let the engineers choose the most suitable
+        framework for delivering the required results
+
+3. ✋ Disciplined Agile Delivery (DAD):
+- [definition]:  process decision framework that enables simplified process decisions around incremental and iterative solution delivery
+- it builds on Agile, Scrum and lean development practices by filling in the process gaps
+- Used in IBM.
+- [scaling]: it streamlines work, but also enables [scaling]
+- other methodologies focus on subset of activities, so in reality almost every team has to build their "own version" of Scrum
+- [key aspects]:
+    - people-first: People, and the way they interact with each other, are the primary determinant of success for a solution delivery project
+    - learning
+    - hybrid
+    - full delivery lifecycle: addresses the entire project from the point of initiation all the way to production and post-delivery production activities
+    - goal driven
+    - solution focused
+    - risk-value calculation instead of risk only
+    - enterprise aware
+- [roles]:
+    1. team leader
+    2. product owner
+    3. team member
+    4. stake holder
+    5. architecture owner
+
+- [STRUCTURE]:
+-------------------------------------------------------------------------------------------------------------------------------------------
+    👶 [INCEPTION PHASE]        ------------>       ⚙️ [CONSTRUCTION PHASE]        ------------>        ➡️ [TRANSITION PHASE]
+-------------------------------------------------------------------------------------------------------------------------------------------
+    1. Form Initial Team                            1. Produce Potentially Consumable Solution          1. ⚠️ Ensure solution is consumable
+    2. Develop Common Project Vision                2. Address Changing Stakeholder Needs               2. Deploy solution
+    3. ⚠️ Align with Enterprise Direction           3. Move Closer to Deployable Release
+    4. Explore Initial Scope                        4. Improve Quality
+    5. Identify Initial Technical Strategy          5. ⚠️ Prove Architecture Early
+    6. ⚠️ Develop Initial Release Plan
+    7. Form Work Environment
+    8. ⚠️ Secure Funding
+    9. ⚠️ Identify Risks
+-------------------------------------------------------------------------------------------------------------------------------------------
+                                                    ⏱ [ONGOING GOALS]
+                                                    ⚠️ 1. Fulfill Project Mission
+                                                    ⚠️ 2. Grow Team Members
+                                                    ⚠️ 3. Address Risk
+                                                    ⚠️ 4. Improve Team Process and Environment
+                                                    ⚠️ 5. Leverage/Enhance Existing Infrastructure
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+4.⚡️ Dynamic Systems Development Method (DSDM):
+- [definition]:  agile project delivery framework
+- 1994, introduced to "discipline" the RAD (Rapid Application Development)
+- focus on governance
+- Uses [MoSCoW] method to define: must's, should's, could's, won`t's
+- [DSDM Atern]: Atern is a vendor-independent approach that recognises that more projects fail because of people problems than technology.
+                Atern’s focus is on helping people to work effectively together to achieve the business goals.
+
+- [DSDM Atern principles]:
+    1. Focus on the business need
+    2. Deliver on time
+    3. Collaborate
+    4. Never compromise quality
+    5. Build incrementally from firm foundations
+    6. Develop iteratively
+    7. Communicate continuously and clearly
+    8. Demonstrate control
+
+- [Core techniques]:
+    1. Timeboxing
+    2. MoSCoW
+    3. Prototyping
+    4. Testing
+    5. Workshops with all stakeholders
+    6. Modelling
+    7. Configuration management
+
+5. 🔔 Kanban:
+- Developed in Toyota
+- Visual boards with tasks
+    🚗 what to produce?
+    🔢 how much to produce?
+    📆 when to deliver?
+- Example: [customers] select from the [backlog] the items and their quantity for the current period
+- [work in progress limits]: there are limits to the [IN PROGRESS] section in order to guarantee smooth and consistent delivery and pressure
+- it forces the team to focus on completing work before moving to new items
+- Kanban prevents overworking and guarantees optimal work load
+
+BACKLOG | NEXT | IN PROGRESS (MAX 4) | TESTING (MAX 3) | COMPLETE
+
+6.🧔 ⚙️ Personal Software Process (PSP):
+- [definition]: help software engineers better understand and improve their own performance by bringing discipline to the way they develop software
+- created by Watts Humphrey to apply the underlying principles of the Software Engineering Institute's (SEI)
+    Capability Maturity Model (CMM) to the software development practices of a single developer
+- give software engineers the process skills necessary to work on a team software process (TSP)
+
+- [objectives]:
+1. Improve their estimating and planning skills.
+2. Make commitments they can keep.
+3. Manage the quality of their projects.
+4. Reduce the number of defects in their work.
+7. SafE (Scaled Agile Framework):
+
+- [approach]:
+- [evolutionary improvement approach]:
+an engineer learning to integrate the PSP begins at the first level – PSP0 – and progresses in process maturity to the final level – PSP2.1
+- checklists and templates to guide the engineer through required steps
+
+- [PROCESS]
+    -------------------------------------------------------------------------------------------------------------------
+    [input]: documented requirements
+    1. PSP 0                                PROCESS DISCIPLINE & MANAGEMENT
+        - ⛳️ [planning]:    establish a process framework; log time, defect, and size data to improve estimating accuracy
+        - 💻 [development]: design, code, compile, test and measure time
+        - ⚰️ [post mortem]: ensure all data has been properly recorded and analyzed
+    2.PSP 0.1
+        - 🎫 [+ coding standard]
+        - 📏 [+ size measurements]
+        - 📈 [+ personal improvement plan] (PIP)
+    -------------------------------------------------------------------------------------------------------------------
+    3.PSP 1                                 PLANNING & ESTIMATION
+        - 🔭 [estimate size]: use accumulated data from previous projects
+        - ⚙️ [test report]
+    4.PSP 1.1
+        - 📦 [plan tasks]
+        - 🗓 [create schedule]: PROBE (Proxy-based estimating)
+        - 📆 [estimate timeline]:
+            [Earned Value Management] method:
+                - 📆    [project plan]: A project plan that identifies work to be accomplished
+                - 💶 🛠 [planned value]: A valuation of planned work, called planned value (PV) or budgeted cost of work scheduled (BCWS)
+                - 💶 💰 [earned value]: Pre-defined "earning rules" (also called metrics) to quantify the accomplishment of work, called earned value (EV) or budgeted cost of work performed (BCWP
+    -------------------------------------------------------------------------------------------------------------------
+    5. PSP 2                                QUALITY MANAGEMENT
+        - ✅ [+ code review]: recommended checklists
+        - ✅ [+ design review]
+    6. PSP 2.1
+        - 📋 [+ design specifications]
+        - 📊 [+ analysis]
+    -------------------------------------------------------------------------------------------------------------------
+
+7.👨‍👩‍👦‍ ⚙️ Team Software Process (TSP): [video]: https://www.youtube.com/watch?v=hKyKSyXgzk0
+- reported to be one of the most accurate engineering management strategies
+- [self directed]: the team manages itself, plans and tracks their work, manages the quality, and works proactively to meet team goals
+- TSP teams consist of PSP-trained developers who volunteer for areas of project responsibility, so the project is managed by the team itself
+- team uses data gathered from the PSP of the team members => improved estimates
+- 30% of software project plans fails, but SEI study in 13 projects found that PSP teams miss their estimates only by 6%
+- utilize historical data to estimate actual duration of projects, making realistic expectations
+- TSP produces low-defect software, reducing time for bug fixing in testing and production phases
+
+- [key deliverables]:
+    - software quality and security
+    - improve process management and timing
+
+- [🧠 core principles]:
+    👨‍👩‍👦‍👦 [team building]: defines roles within the team. launch and re-launch of periods.
+    ⚙️ [team working]: engineering processes
+
+- [core activities]:
+    1. 🗒 [launch]: planning: teams and managers establish goals, define team roles, assess risks, estimate effort, allocate tasks,
+                 and produce a team plan
+    2. 💻 [execution]:  track planned and actual effort, schedule, and defects by meeting regularly and reporting
+    3. ⚰️ [post mortem]: assess performance, revise planning parameters, and capture lessons learned for process improvement
+
+- [roles]:
+    👨‍💻 [team lead]: responsible to management for products and project outcomes
+    ⚽ [coach]: coach is responsible for developing individual and team performance
+
+8. 📈⚡️ SAFe (Scaled Agile Framework):
+- [definition]: scaling beyond a team: set of organization and workflow patterns intended to guide enterprises in scaling lean and agile practices.
+- one of the most used frameworks to scale Agile
+- competitors: Large-scale Scrum (LeSS), Disciplined agile delivery (DAD), and Nexus
+- promotes alignment, collaboration, and delivery across large numbers of agile teams
+- [big picture view]: The primary reference for the scaled agile framework was originally the development of a big picture view of
+   how work flowed from product management (or other stakeholders), through governance, program, and development teams, out to customers.
+
+- [🧠 core principles]:
+1. 💰              Take an economic view
+2. ⚖️              Apply systems thinking
+3. 💚 💙 💜 ❤️      Assume variability; preserve options
+4. 📶              Build incrementally with fast, integrated learning cycles
+5. ✅ ⚙️           Base milestones on objective evaluation of working systems
+6. 🚱              Visualize and limit work-in-progress, reduce batch sizes, and manage queue lengths
+7. ⏱ 👨‍👩‍👧‍👧           Apply cadence (timing), synchronize with cross-domain planning
+8. 👨‍✈️ 👉 👨‍🎓        Unlock the intrinsic motivation of knowledge workers
+9. ☝️👨‍👨‍👧            Decentralize decision-making
+
+- [SAFe Framework]:
+|----------------------------------------------------------------------------------------------------------------------------------|
+| 1. 👶 [essential]:       most basic configuration.
+|                          includes the 👨‍👨‍👧 [team] and 🗺 [program] levels (Agile Release Trains)
+|----------------------------------------------------------------------------------------------------------------------------------|
+| 2. 🗺 💵 [portfolio]:     includes concerns for strategic direction, investment funding, and lean governance
+|----------------------------------------------------------------------------------------------------------------------------------|
+| 3. 💧✨ [large solution]: allows for coordination and across multiple programs, but without the portfolio considerations.
+|                          in earlier versions of SAFe, this level was referred to as value stream.
+|----------------------------------------------------------------------------------------------------------------------------------|
+| 4. ☑️ [full]:             everything
+|----------------------------------------------------------------------------------------------------------------------------------|
+
+- [challenges for scaling agile]:
+    1. [⏱ longer planning horizons]: when more teams have to be coordinated, the planning needs to be 1-2 years ahead (instead of 1-2 months)
+    2. [🎩 maintaining agile for managers]: management deals with more abstract problems and it is hard to maintain agile in that context
+    3. [❗️👑 delegated authority of product managers]: as the scale increases, so does the size and number of backlogs.
+            however, the role of Product Managers start to diminish in importance and responsibility (with multiple cross-backlog coordination)
+    4. [👩‍👦🔄👨‍👧❗️ synchronization dependency]: in general Agile teams are autonomous, however in cooperation with hundreds of teams constraints to this start to apply
+    5. [👊 hardening iterations]: SAFe has recommended a [hardening sprint] after each release, so the team can focus on polishing and bugfixing,
+            but it has been criticized to hurt Agile principles and freedom
+
+9. SEMAT (Software Engineering Method and Theory): [video] https://www.youtube.com/watch?v=6eS7a0MPpn4
+- [definition]: bridging the gap between the developer community and the academic community and for creating a community
+                giving value to the whole software community
+- [alphas]: common grounds independent of different methods or use cases
+- [assertions]: required in order to start the project
+- initiative to reshape software engineering such that software engineering qualifies as a rigorous discipline
+- launched in December 2009 by Ivar Jacobson, Bertrand Meyer, and Richard Soley
+- 4 core areas
+
+🚗 [practice area]:
+- develop an [essential kernel] of Software Engineering: "this is what we do, always do and will do"
+- create specific methods which can be tuned for different organizations' needs
+- result: [⏺ essence kernel] which contains objects defined by the [🔣 essence language] (2013, beta for OMG [object management group])
+- developed right now in 2019: [practice] and [tool] tracks
+
+👨‍🏫 [education area]     Education in school and companies
+- common ground for all education institutions: [⏺ essence]
+
+🈳 [theory area]
+- create a general theory of Software Engineering by creating community discussions
+- allow the [⏺ essence] to predict critical software engineering phenomena
+	How will project success be affected by changing the way of working?
+	How will project success be affected by changing the team structure and characteristics?
+	How will project success be affected by changing the content and form of the requirements?...
+
+👨‍👩‍👧‍👧 [community area]:    Setting up legal entities and growth
