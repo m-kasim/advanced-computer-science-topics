@@ -1,0 +1,277 @@
+Software Architectural Patterns: Active record. EDA (Event Driven Architecture). REST. MVC (Model-View-Controller). MVA (Model-View-Adapter). MVP (Model-View-Presenter). MVVM (Model-View-Viewmodel). SBA (Space-based Architecture). ORB (Object-Request-Broker).
+
+1. Software Architectural Patterns:
+- [definition]: a general, reusable solution to a commonly occurring problem in software architecture within a given context
+- architectural patterns are similar to software design patterns but have a broader scope
+- they address various issues in software engineering, such as performance limitations, high availability and minimization of a business risk
+- [main domains]:
+    1. ⚙️ Service Oriented Architectures / Data integration
+    2. ⚱️ Master Data Management
+    3. 🛢 Data Architectures
+    4. 📉 Data Modeling
+    5. 📊 Analytics and Business intelligence
+    6. 👽 Artificial Intelligence
+
+2. ⚡️ 👉 🛢 Active Record Pattern:
+- [definition]: stores in-memory object data in relational databases as [models]
+- [object operations]:  CRUD + corresponding (more or less) to the object data and properties stored in the database
+- it is a method to access data from database table (or view) and instantiate it as a [class].
+            [🛢 table row] ==> [⚡️ memory object]
+- [ORM] (object relational-mapping): wrapper API interface for communication between the memory objects and the database via abstraction
+- ORM helps speedup programming and shields the code against SQL injections
+- [examples]: Django ORM, ColdFusion, PHP ActiveRecord, Ruby ActiveRecord
+- [migrations]: Some ORMs provide automatic migration generation (like Django ORM)
+- [criticism]: Active Record pattern breaks the "Separation of Concerns principle" by establishing a tight coupling with the database.
+               Therefore, Active Record Pattern is suitable more often for small to medium size business apps.
+               It works poorly in a distributed architecture.
+
+ORM layer:
+part = new Part()
+part.name = "Sample part"
+part.price = 123.45
+part.save()
+
+SQL style:
+INSERT INTO parts (name, price) VALUES ('Sample part', 123.45);
+
+3. 🌧 🚨 Event Driven Architecture (EDA):
+- [definition]: promoting the production, detection, consumption of, and reaction to events.
+- [examples]: MS Word.
+- [event]: significant change in state (via interruptions of cycles)
+    [ header ][    body     ]
+
+- [example]: [car.status] = unsold => [car.status] = sold
+- [usage]:  transmit events among loosely coupled software components and services.
+- [architecture]:
+                    [event emitters] -------------> [event channels] ----------> [event consumers]
+- [good for scaling]: simplifies horizontal scalability in distributed computing models and makes them more resilient to failure
+- [SoA integration]: based on event triggers. SOA 2.0 evolves the implications SOA and EDA => autonomous event patterns detection (of desired events)
+- [challenges]: event heterogeneity makes it difficult to manage complex event-driven systems (IoT)
+
+- [architecture]: extremely loosely coupled and well distributed.
+------------------------------------------------------------------------------------------------------------------------------------
+    1. [🕰 event generator]:                component which detects a fact and generate an event. Example: email client, server, etc.
+                                            events must be standardized too.
+
+    2. [➖➖➖ event channel]:               channel for processing the events, stored in a queue
+
+    3. [🎛 event processing engine]:        identify the event and execute an action
+
+    4. [downstream event-driven activity]:  layer with consequences of the event. might not be required.
+------------------------------------------------------------------------------------------------------------------------------------
+
+- [processing types]:
+    👶         [simple]:                    related to specific changes in the condition
+    ⏩         [event stream processing]:   ordinary events are scanned for unusual values => alert
+    📊 ⏱      [complex event processing]:  infer patterns from ordinary events in order to detect a complex event (over some time) via statistical methods
+    ⏩ 🖥 ⏩ 📱 [online event processing]:   process multiple events from distributed systems (allowing scalability) but cannot guarantee processing time
+
+4. 🎛 Representational state transfer (REST):
+- [definition]: a set of predefined stateless operations (constraints) for creating web services
+- request to an URI and response in the form of JSON, XML, HTML, or etc.
+- support for multiple versions
+- the user navigates through various states
+- [client]-[server] separations of concerns => scalability
+
+- HTTP methods:
+    1. GET      - only retrieve data and should have no other effect.
+    2. HEAD     - get only headers. asks for a response identical to that of a GET request, but without the response body.
+    3. POST     - requests that the server accept the entity enclosed in the request as a new subordinate of the web resource identified by the UR
+    4. PUT      - store the resource in the URI: if it exists - replace it; it it does not exist - create it.
+    5. PATCH    - applies partial modifications to a resource
+    6. DELETE   - delete the resource
+    7. CONNECT  - converts the request connection to a transparent TCP/IP tunnel, usually to facilitate SSL-encrypted communication (HTTPS) through an unencrypted HTTP proxy
+    8. OPTIONS  - returns the HTTP methods that the server supports for the specified URL
+    9. TRACE    - echoes the received request so that a client can see what (if any) changes or additions have been made by intermediate servers
+
+- Applications: RESTful APIs
+    API Endpoint: http://api.example.com/v1/
+    media type: Atom, microformats, application/vnd.collection+json
+- The GET method is safe, meaning that applying it to a resource does not result in a state change of the resource (read-only semantics)
+- GET, PUT and DELETE methods are idempotent: applying them multiple times to a resource result in the same state change of the resource
+  as applying them once, though the response might differ
+- GET and POST methods are cacheable, meaning that responses to them are allowed to be stored for future reuse
+- Unlike SOAP, there's no "official" standard for RESTful Web APIs (REST is an arch. style, SOAP is a protocol)
+- Many developers also describe their APIs as RESTful, even though these APIs actually don't fulfill all of the architectural constraints
+
+- 6 REST architecture constraints (principles):
+    1. [💁‍⏩⚙️ client-server architecture]: separation of concerns => evolve independently => scalability
+    2. [📵 statelessness]: no client context/session is stored on the server. clients holds the session state and initiates state transitions
+    3. [📟 able to cache]:     responses should be cacheable, thus avoiding repetitive calculations
+    4. [📏📏📏 layers]:         a client cannot tell whether it is connected to an end-server or intermediate one => scalability
+    5. [❗️💿 code-on-demand]:   server can transfer executable code to the client (optional)
+    6. [❗️✅ uniform interface]:
+            1. [🙋‍ resource identification in requests]:            JSON, XML, HTML...
+            2. [👠 resource manipulation through representations]:  when the client has enough metadata it can modify the resource directly,
+                                                                    without accessing/reading the entire resource
+            3. [🎫 self-descriptive messages]:                      each request contains enough information about itself
+            4. [🌎 ➡️ HaEoAS]:                                       Hypermedia As Engine Of Application State
+                                                                    The server provides available 'navigation' links to the other
+                                                                    services it offers when the client lands on the index request.
+                                                                    This prevents the hardcoding of API endpoints in the client
+
+5. 🏎 ⬅️➡️ 🔧 ⬅️➡️ 👁 Model-View-Controller (MVC):
+- [definition]: architectural pattern for developing user interfaces divided to 3 parts with separate representations
+- it give birth to other modifications of the MVC
+- explosion in popularity after NeXT Objective-C in 1996, later embraced by Java and Java Spring. Later by Django, Rails and PHP
+- designed for desktop, but employed widely for WWW
+
+- [architecture:]
+    1. [model]:         a representation of the database content in the application's memory
+    2. [view]:          information presented to the user
+    3. [controller]:    accepts and validates inputs from the model/view and performs operations on them
+
+- [benefits]:
+    [⬅️ ➡️ separation of concerns]: developers can simultenously work on the frontend and backend of an app
+    [♻️ ✅ code reuse]: ORM, Templating engines and Models enforce good code re-use
+
+- [➕ advantages]:       ❗️loose coupling
+    1. Simultaneous development   – Multiple developers can work simultaneously on the model, controller and views.
+    2. High cohesion              – MVC enables logical grouping of related actions on a controller together. The views for a specific model are also grouped together.
+    3. Loose coupling             – The very nature of the MVC framework is such that there is low coupling among models, views or controllers
+    4. Ease of modification       – Because of the separation of responsibilities, future development or modification is easier
+    5. Multiple views for a model – Models can have multiple views
+- [➖ disadvantages]:    ❗️clustered and fragmented code
+    1. Code navigability                    – The framework navigation can be complex because it introduces new layers of abstraction and requires users to adapt to the decomposition criteria of MVC.
+    2. Multi-artifact consistency           – Decomposing a feature into three artifacts causes scattering. Thus, requiring developers to maintain the consistency of multiple representations at once.
+    3. Undermined by inevitable clustering  – Applications tend to have heavy interaction between what the user sees and what the user uses. Therefore each feature's computation and state tends to get clustered into one of the 3 program parts, erasing the purported advantages of MVC.
+    4. Excessive boilerplate                – Due to the application computation and state being typically clustered into one of the 3 parts, the other parts degenerate into either boilerplate shims or code-behind[15] that exists only to satisfy the MVC pattern.
+    5. Pronounced learning curve            – Knowledge on multiple technologies becomes the norm. Developers using MVC need to be skilled in multiple technologies.
+    6. Lack of incremental benefit          – UI applications are already factored into components, and achieving code reuse and independence via the component architecture, leaving no incremental benefit to MVC
+
+6. 🏎 ⬅️❗️🎛❗️➡️ 👁 Model-View-Adapter (MVA):
+- [definition]: [view] and [model] do not communicate directly and are completely oblivious of each other
+- also known as: mediating-controller MVC
+- [goal]: data can be modified, without significantly modifying the [view]
+    view is completely decoupled from the model such that view and the model can interact only via the mediating
+    controller or adapter between the view and the model.
+- [isolation]: The model and view are kept intentionally oblivious of each other. In traditional MVC they are aware of each other
+                It does not allow storing [view] details in the [model]!
+- [reason]: many [views] can access the same [model] via an [adapter] / [adapter class].
+            the model is not aware how many different technologies it supports, keeping the [model] oblivious!
+- [example]: one underlying data-storage model and schema and technology could be accessed via different views—e.g.,
+             Qt GUI, Microsoft MFC GUI, GTK+ GUI, Microsoft .NET GUI, Java Swing GUI, Silverlight website, and AJAX website
+- [multiple adapters]: there can be multiple adapters for the same connection of [model]<->[view] in order to accommodate different use cases
+
+7. Model-View-Presenter (MVP):
+- used mostly for building user interfaces
+- [presenter]: "middleman". all presentation logic is pushed to the [presenter]
+- initially conceived by a joint-venture by IBM, Apple and HP
+- used in .NET
+- focus on [automated testing]
+- [view] each [view] has a [view interface] (not direct html template!) which instantiates a concrete [presenter] object for this concrete [view].
+         classic MVC allows a single controller for multiple views. [presenters] are per [view]
+- [presenter]: gets and sets information from/to the [view] through an interface that can be accessed by the interface (view) component
+               sometimes it also communicates with [services] (get common queries from the DB), instantiate mode objects and pass to [presenter]
+- [MVVM]: Presentation Model pattern. In this pattern there is no Presenter. Instead the View binds directly to a Presentation Model.
+          The Presentation Model is a Model crafted specifically for the View.
+
+[architecture]:
+    1. [model] is an interface defining the data to be displayed or otherwise acted upon in the user interface.
+    2. [view] is a passive interface that displays data (the model) and routes user commands (events) to the presenter to act upon that data.
+    3. [presenter] acts upon the model and the view. It retrieves data from repositories (the model), and formats it for display in the view.
+
+8.Model-View-ViewModel (MVVM):
+- [definition]: [view model] is a value converter which _exposes_ part of the model to the [view] in suitable format
+- [data binding]: aimed to remove virtually all GUI code from source
+- also known as [model]-[view]-[binder]
+- integrated in WPF (Windows Presentation Foundation, Microsoft's .NET graphics system)
+- [criticism]: overhead in implementing MVVM is "overkill" for simple UI operations. [data binding] can also consume a lot of memory in large apps
+
+[architecture]
+    1. [view]: forwards the handling of these to the view model via the [data binding] (properties, event callbacks, etc.
+    2. [view-model]: abstraction of the state of the data in the model, exposed to the view.
+                it has a [binder] which automates the communication between its [exposed model properties] and the [view]
+                The main difference between the view model and the Presenter in the MVP pattern, is that the presenter has a reference to a view
+                whereas the view model does not. Instead, a view directly [binds] to properties on the view model to send and receive updates
+                [binder]:
+                In the Microsoft solution stack, the binder is a markup language called XAML.
+                The binder frees the developer from being obliged to write boiler-plate logic to synchronize the view model and view
+
+9. Object-Request-Broker (ORB):
+- [definition]: allow calls between objects in a distributed architecture via RPC (Remote Procedure Calls) to remote environments and utilize them.
+                promote interoperability of distributed object systems, enabling such systems to be built by piecing together objects from different
+                vendors, while different parts communicate with each other via the [object request broker].
+                use the same objects over a network, as if they were store in the local process, thus appearing as local objects
+
+- [object request broker]:
+    [marshalling / serialization]: in-process data structures to and from the raw byte sequence, which is transmitted over the network
+- [examples]: CORBA
+- [interface description language ]: some ORB also describe the data that is to be transmitted on remote calls
+- [architecture]: client has [stub] objects. after the [stub] methods are invoked, a request to the [object request broker] is made,
+                  which in turn creates a request to the server side [object request broker]
+
+---------------------------------------------------------------|------------------------------------------------------------
+    LOCAL                                                      |      SERVER SIDE
+---------------------------------------------------------------|------------------------------------------------------------
+
+[stub] [stub] [stub] =======> [object request broker] ========================> [object request broker] =======> [target object]
+                                                    [marshalling/serialization]
+----------------------------------------------------------------------------------------------------------------------------
+
+[examples]:
+CORBA           - Common Object Request Broker Architecture.
+ICE             - the Internet Communications Engine
+.NET Remoting   - object remoting library within Microsoft's .NET Framework
+Windows Communication Foundation (WCF)
+ORBexpress      - Real-time and Enterprise ORBs by Objective Interface Systems
+Orbix           - An Enterprise-level CORBA ORB from IONA Technologies
+DCOM            - the Distributed Component Object Model from Microsoft
+RMI             - the Remote Method Invocation Protocol from Sun Microsystems
+ORBit           - an open-source CORBA ORB used as middleware for GNOME
+The ACE ORB     - a CORBA implementation from the Distributed Object Computing (DOC) Group
+omniORB         - Free CORBA ORB
+
+10. SBA (Space-based Architecture).
+- relies on [middleware] and [in-memory computing] and data replication
+- [right behind]: batch processes for saving the in-memory data to the [database], in order to optimize speed (because writing to the DB is slow)
+- [definition]: pattern for achieving linear scalability of stateful, high-performance applications using the tuple space paradigm.
+                It follows many of the principles of representational state transfer (REST), service-oriented architecture (SOA)
+                and event-driven architecture (EDA), as well as elements of [grid computing].
+- [grid computing]: perform complex goals across many nodes. grid computers have each node set to perform a different task/application
+                    not part of 1 task per many nodes => more heterogenous than blockchain computing
+- [associate memory]: memory is indexed for high speed search and retrieval
+- [tuple space memory]: implementation of the [associative memory] paradigm for parallel/distributed computing.
+                        it provides a repository of [tuples] that can be accessed concurrently by different CPUs/systems.
+                        [tuples] together create a form of [distributed shared memory]
+
+- [blackboard metaphor]:
+    A group of specialists are seated in a room with a large blackboard.
+    They work as a team to brainstorm a solution to a problem, using the blackboard as the workplace for cooperatively developing the solution.
+    The session begins when the problem specifications are written onto the blackboard.
+    The specialists all watch the blackboard, looking for an opportunity to apply their expertise to the developing solution.
+    When someone writes something on the blackboard that allows another specialist to apply their expertise, the second specialist records
+    their contribution on the blackboard, hopefully enabling other specialists to then apply their expertise.
+    This process of adding contributions to the blackboard continues until the problem has been solved.
+
+[object spaces architecture]:
+- [object spaces]: a logical space, which is shared by various systems, independent on the platform.
+                   [services] are stored in the distributed [object space]. [clients] query the [object space] and look for the [objects]
+- [object directory]: all shared [objects] in the [object space] are registered in the [object directory].
+                      clients query the [object directory] with names of the objects or properties, in order to discover them
+- [process]: [objects] stored in the [object space] are passive. [clients] download them, modify them (not required), and then place them
+             back with their updated state at the [object space]
+- [mutual exclusion]: after [object] is accessed, it is removed from the [object space], and is placed back only after it has been released
+                      no other process can access an object while it is being used by one process, thereby ensuring mutual exclusion
+
+- [space based architecture]:
+    - With a space-based architecture, applications are built out of a set of self-sufficient units, known as processing-units (PU)
+    - These units are independent of each other, so that the application can scale by adding more units
+    - The SBA model is closely related to other patterns that have been proved successful in addressing the application scalability challenge, such as shared nothing architecture (SN), used by Google, Amazon.com and other well-known companies
+    - applications in sensitive security trading platforms
+
+[architecture]:
+1. [Processing unit]:
+The unit of scalability and fail-over. Normally, a processing unit is built out of a POJO (Plain Old Java Object) container,
+such as that provided by the Spring Framework.
+2. [Virtual middleware]:
+A common runtime and clustering model, used across the entire middleware stack. The core middleware components in a typical SBA architecture are:
+
+    *) Messaging grid	Handles the flow of incoming transaction as well as the communication between services
+    *) Data grid	Manages the data in distributed memory with options for synchronizing that data with an underlying database
+    *) Processing grid	Parallel processing component based on the master/worker pattern (also known as a blackboard pattern) that enables parallel processing of events among different services
+3. [POJO-driven services model]:
+A lightweight services model that can take any standard Java implementation and turn it into a loosely coupled distributed service. The model is ideal for interaction with services that run within the same processing-unit.
+
+4. [SLA-driven container]:
+The SLA-driven container enables the deployment of the application on a dynamic pool of machines based on Service Level Agreements. SLA definitions include the number of instances that need to run in order to comply with the application scaling and fail-over policies, as well as other policies.
