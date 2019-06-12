@@ -222,10 +222,11 @@ ORBit           - an open-source CORBA ORB used as middleware for GNOME
 The ACE ORB     - a CORBA implementation from the Distributed Object Computing (DOC) Group
 omniORB         - Free CORBA ORB
 
-10. SBA (Space-based Architecture).
+10. 📟 📟 📟 Space-based Architecture (SBA):
 - relies on [middleware] and [in-memory computing] and data replication
-- [right behind]: batch processes for saving the in-memory data to the [database], in order to optimize speed (because writing to the DB is slow)
-- [definition]: pattern for achieving linear scalability of stateful, high-performance applications using the tuple space paradigm.
+- [right behind]: batch processes for saving the in-memory data to the [database], in order to optimize speed
+                  (because writing to the DB is slow)
+- [definition]: pattern for achieving linear scalability of stateful, high-performance applications using the [tuple space] paradigm.
                 It follows many of the principles of representational state transfer (REST), service-oriented architecture (SOA)
                 and event-driven architecture (EDA), as well as elements of [grid computing].
 - [grid computing]: perform complex goals across many nodes. grid computers have each node set to perform a different task/application
@@ -255,23 +256,28 @@ omniORB         - Free CORBA ORB
                       no other process can access an object while it is being used by one process, thereby ensuring mutual exclusion
 
 - [space based architecture]:
-    - With a space-based architecture, applications are built out of a set of self-sufficient units, known as processing-units (PU)
-    - These units are independent of each other, so that the application can scale by adding more units
-    - The SBA model is closely related to other patterns that have been proved successful in addressing the application scalability challenge, such as shared nothing architecture (SN), used by Google, Amazon.com and other well-known companies
+    - [processing units]: With a space-based architecture, applications are built out of a set of self-sufficient units, known as processing-units
+                          These units are independent of each other, so that the application can scale by adding more units
+    - The SBA model is closely related to other patterns that have been proved successful in addressing the application scalability challenge,
+      such as shared nothing architecture (SN), used by Google, Amazon.com and other well-known companies
     - applications in sensitive security trading platforms
 
 [architecture]:
 1. [Processing unit]:
 The unit of scalability and fail-over. Normally, a processing unit is built out of a POJO (Plain Old Java Object) container,
 such as that provided by the Spring Framework.
-2. [Virtual middleware]:
-A common runtime and clustering model, used across the entire middleware stack. The core middleware components in a typical SBA architecture are:
 
-    *) Messaging grid	Handles the flow of incoming transaction as well as the communication between services
-    *) Data grid	Manages the data in distributed memory with options for synchronizing that data with an underlying database
-    *) Processing grid	Parallel processing component based on the master/worker pattern (also known as a blackboard pattern) that enables parallel processing of events among different services
+2. [Virtual middleware]:
+A common runtime and clustering model, used across the entire middleware stack:
+
+    *) Messaging grid	- Handles the flow of incoming transaction as well as the communication between services
+    *) Data grid	    - Manages the data in distributed memory with options for synchronizing that data with an underlying database
+    *) Processing grid	- Parallel processing component based on the master/worker pattern (also known as a blackboard pattern) that enables
+                          parallel processing of events among different services
 3. [POJO-driven services model]:
 A lightweight services model that can take any standard Java implementation and turn it into a loosely coupled distributed service. The model is ideal for interaction with services that run within the same processing-unit.
 
 4. [SLA-driven container]:
-The SLA-driven container enables the deployment of the application on a dynamic pool of machines based on Service Level Agreements. SLA definitions include the number of instances that need to run in order to comply with the application scaling and fail-over policies, as well as other policies.
+The SLA-driven container enables the deployment of the application on a dynamic pool of machines based on Service Level Agreements.
+SLA definitions include the number of instances that need to run in order to comply with the application scaling and fail-over policies,
+as well as other policies.

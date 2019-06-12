@@ -1,0 +1,31 @@
+Software Engineering Principles
+https://en.wikipedia.org/wiki/Category:Programming_principles
+
+1. Single responsibility principle:
+- [definition]: every module, class, or function[1] should have responsibility over a single part of the functionality provided by the
+                software, and that responsibility should be entirely encapsulated by the class.
+
+2. Keep-It-Simple-Stupid (KISS):
+- US Navy, 1960: most systems work best if they are kept simple rather than made complicated
+
+3. Separation of concerns (modularity):
+- [definition]: separating a computer program into distinct sections, so that each section addresses a separate concern.
+- A program that embodies SoC well is called a modular program
+- a class should do what its name says it should do and nothing else!
+
+4. Code Re-use:
+- source code should not repeat. the same source code should be called and "re-used", saving time to market and to finish the project
+- Google has put heavy focus on code re-use, but some argue this has resulted in compilation speed reduction
+
+5. Cohesion:
+- sameness, similarity
+- [definition]: degree to which the elements inside a module belong together
+
+6. The Deutsch Limit:
+- The problem with visual programming is that you can’t have more than 50 visual primitives on the screen at the same time
+- Therefore, visualization is always limited.
+
+7. Zero, One or Infinity:
+- program should be designed to handle 0, 1 or ∞ instances of an object, but not random (3723).
+- It argues that arbitrary limits on the number of instances of a particular entity should not be allowed.
+  Specifically, an entity should either be forbidden entirely, only one should be allowed, or any number of them should be allowed

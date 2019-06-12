@@ -1,0 +1,224 @@
+Design patterns in Software Engineering. Classification. Singleton. Factory method. Lazy initialization. Prototype. Adapter/Wrapper. Decorator. Marker. Observer. Template. Object pool.
+
+1. Design patterns in Software Engineering:
+- [software design pattern]: general, reusable solution to a commonly occurring problem within a given context in software design.
+                             description or template for how to solve a problem that can be used in many different situations (best practices)
+                             Design patterns may be viewed as a structured approach to computer programming
+- book: Design Patterns: Elements of Reusable Object-Oriented Software, 1994
+- some people try to form [design patterns] as components, in order to avoid code duplication in each project
+- effective software design requires considering issues that may not become visible until later in the implementation
+
+2. Classification:
+- [domains] attempts are made to classify software design patterns into domains
+
+[categories]:
+1. [👼 creational patterns]:        deal with object creation mechanisms, trying to create objects in a manner suitable to the situation (class or object creation)
+2. [🔡 ⬅️➡️ 🔣 structural patterns]: ease the design by identifying a simple way to realize relationships among entities
+3. [🌀 ➡️ 🔵 behavioral patterns]:   identify common communication patterns among objects and realize these patterns
+
+3. 📟 1️⃣ Singleton:
+- [definition]: Ensure a class has only one instance, and provide a global point of access to it.
+- restricts the instantiation of a class to one "single" instance
+- useful when exactly one object is needed to coordinate actions across the system
+- [multiton]: allows for the controlled creation of multiple instances, which it manages through the use of a map.
+- [lazy initialization]: may use lazy initialization, where the instance is created when the static method is first invoked.
+                         If the static method might be called from multiple threads simultaneously, measures may need to be taken to prevent
+                         race conditions that could result in the creation of multiple instances of the class.
+[architecture]:
+- ensure that only one instance of the singleton class ever exists
+- provide global access to that instance
+
+[implementation]:
+- Hide the constructors of the class by declaring them [private]
+- Define a public static method (getInstance()) that returns the sole instance of the class
+
+[usages]:
+- State objects are often singletons.
+- Singletons are often preferred to global variables because:
+- They do not pollute the global namespace (or, in languages with nested namespaces, their containing namespace) with unnecessary variables.[4]
+- They permit lazy allocation and initialization, whereas global variables in many languages will always consume resource
+
+[examples]:
+- when centralized control is needed
+- GarbageCollector, Monitor, ObjectManager
+
+4. Factory method: [video] 10:00+ https://www.youtube.com/watch?v=EcFVTgRHJLM
+- [definition]: define logic for how to instantiate objects.
+                Define an interface for creating a single object, but let subclasses decide which class to instantiate.
+                Factory Method lets a class defer instantiation to subclasses.
+- creating objects without having to specify the exact class of the object that will be created
+- This is done by creating objects by calling a factory method—either specified in an interface and implemented by child classes,
+  or implemented in a base class and optionally overridden by derived classes—rather than by calling a constructor.
+- [use case]: when it is not exactly clear which class will be used to instantiate an object, but it is sure that there must be an instantiation
+
+- [example]
+    - A method which has to create an animal from a group of available animals: [cat], [dog], [bird].
+    - BalancedAnimalFactory(): creates an animal, based on the amount of currently available other animals, in order to ensure balance
+    - ultimately, the [factory method] holds the _logic_ which determines which objects will be instantiated
+    - a [factory] can inherit other [factories]
+
+                    [AnimalFactory]
+                    /             \
+[BalancedAnimalFactory]     [RandomizedAnimalFactory]
+
+
+5.⬆️ 👹 Lazy initialization:
+- [definition]: Tactic of delaying the creation of an object, the calculation of a value, or some other expensive process until the first time it is needed.
+- [implementation]: augmenting an accessor method (or property getter) to check whether a private member, acting as a cache, has already been
+                    initialized. If it has, it is returned straight away. If not, a new instance is created, placed into the member variable,
+                    and returned to the caller just-in-time for its first use
+- [use case: fast startup]: If objects have properties that are rarely used, this can improve startup speed
+- [multithreading]: access to lazy-initialized objects/state must be synchronized to guard against race conditions (due to the execution time)
+- [lazy loading]: to defer initialization of an object until the point at which it is needed
+
+https://www.youtube.com/channel/UCbF-4yQQAWw-UnuCd2Azfzg/videos
+
+6. Prototype:
+- [definition]: Specify the kinds of objects to create using a prototypical instance, and create new objects from the 'skeleton' of an
+                existing object, thus boosting performance and keeping memory footprints to a minimum.
+- [!] type of objects to create is determined by a prototypical instance, which is cloned to produce new objects
+- might use or not [factory method] in order to call the [pure virtual method] in the base class
+- [use case]: objects to be created can be specified at run-time
+
+- [abstract function]: has no implementation. must be implemented in the child class
+- [virtual function]: function with some implementation which might or might not be enough for the child class (therefore, might be extended)
+- [pure virtual function]: virtual function that is required to be implemented by a derived class if the derived class is not abstract
+- Prototype does not require subclassing, but it does require an "initialize" operation.
+  Factory method requires subclassing, but does not require initialization
+
+- [architecture]:
+    1. define a Prototype object that returns a copy of itself.
+    2. create new objects by copying a Prototype object.
+
+- [use case]:
+The rule of thumb could be that you would need to clone() an Object when you want to create another Object at runtime that is a true copy of the Object you are cloning. True copy means all the attributes of the newly created Object should be the same as the Object you are cloning. If you could have instantiated the class by using new instead, you would get an Object with all attributes as their initial values. For example, if you are designing a system for performing bank account transactions, then you would want to make a copy of the Object that holds your account information, perform transactions on it, and then replace the original Object with the modified one. In such cases, you would want to use clone() instead of new.
+
+7. 🎛 ➡️ 🎛 Adapter/Wrapper:
+- lets the interface of a class communicate with another incompatible interface of another class via the [adapter]
+- [definition]: allows the interface of an existing class to be used as another interface
+- adapts the interface of an (already existing) class without changing it
+- allows otherwise incompatible classes to work together by converting the interface of one class into an interface expected by the clients.
+- An adapter can be used when the wrapper must respect a particular interface and must support polymorphic behavior.
+  Alternatively, a decorator makes it possible to add or alter behavior of an interface at run-time, and a facade is used when an easier
+  or simpler interface to an underlying object is desired
+
+- [example]: adapter that converts the interface of a Document Object Model of an XML document into a tree structure that can be displayed.
+- [usage]: Define a separate adapter class that converts the (incompatible) interface of a class (adapter) into another interface (target) clients require.
+
+8. ✨ 🎛 Decorator:
+- [definition]: allows behavior to be added to an individual object, dynamically augmenting it at run-time,
+                without affecting the behavior of other objects from the same class
+- [overriding methods]: multiple decorators can be stacked on top of each other, each time adding a new functionality
+                        to the overridden method(s)
+- The decorator pattern is an alternative to subclassing. Subclassing adds behavior at compile time, and the change affects all instances
+    of the original class; decorating can provide new behavior at run-time for selected objects.
+- [use cases]:
+    1. responsibilities should be added to (and removed from) an object dynamically at run-time
+    2. a flexible alternative to subclassing for extending functionality should be provided
+
+- [algorithm]:
+    essentially, a [decorator method] is specified for the class, the actual [decorator] is another class, which contains the
+    "decorating" functionality. Then, on run-time the decorated base class is augmented with the [decorator class] in a [wrapper decorator class]
+    which contains also the "decorator" functionality in itself (together with the original functionality of the base class).
+
+- [similarities]:
+    [adapter]	converts one interface to another so that it matches what the client is expecting
+    [decorator]	dynamically adds responsibility to the interface by wrapping the original code
+    [facade]	provides a simplified interface
+
+9. ▶️❗️🎛 Marker Interface:
+- [definition]: Empty interface to associate metadata with a class.
+- provides a means to associate metadata with a class where the language does not have explicit support for such metadata
+- a class implements a marker interface[1] (also called tagging interface), and methods that interact with instances of
+  that class test for the existence of the interface. Whereas a typical interface specifies functionality (in the form of method declarations) that an implementing class must support, a marker interface need not do so.
+- The mere presence of such an interface indicates specific behavior on the part of the implementing class
+- JVM looks at the marker interface and can attach specific run-time options to the class which has this marker
+- used with languages that provide run-time type information about objects via markers to the compiler (so it can for instance apply different parameters to the class)
+- a design marker is a marker interface used to document a design choice
+
+10.👀 ⏪⏪⏪ 💇 ⏩⏩⏩ 👀 Observer:
+- [definition] object, called the [💇‍ subject], maintains a list of its dependents, called [👀 observers],
+  and notifies them automatically of any state changes, usually by calling one of their methods.
+- [publish / subscribe]: notification-registration interaction is also known as [publish-subscribe]
+- used to implement distributed event handling systems, in "event driven" software.
+
+- [use cases]:
+    1. A one-to-many dependency between objects should be defined without making the objects tightly coupled
+    2. It should be possible that one [object] can notify an unspecified number of other dependent [objects]
+
+- [architecture]:
+1. Define [💇‍ subject] and [👀 observers] objects
+2. when [💇‍ subject] changes state, all registered [👀 observers] are notified and updated automatically
+
+- [💇‍ subject]: maintains a list of observers and to notify them of state changes by calling their update() operation
+- [👀 observers]: register (and unregister) themselves on a [subject] (to get notified of state changes) and to update their state
+               (synchronize their state with subject's state) when they are notified => loose coupling
+
+- [memory leaks due to strong reference]:
+    The observer pattern can cause memory leaks, known as the lapsed listener problem, because in basic implementation it requires
+    both explicit registration and explicit de-registration, as in the dispose pattern, because the subject holds strong references
+    to the observers, keeping them alive. This can be prevented by the subject holding [weak references] to the observers.
+
+- [polling]: blocking I/O communication which forces the listener which communicates with the device to wait until its operation is done
+
+- [message queue]: non-polling implementations
+    prevent strong coupling and memory leaks due to the strong connection between the [💇‍ subject] and the [👀 observers]
+    In some (non-polling) implementations of the publish-subscribe pattern (aka the pub-sub pattern), this is solved by creating a
+    dedicated "message queue" server (and sometimes an extra "message handler" object) as an extra stage between the observer and
+    the object being observed, thus decoupling the components. In these cases, the message queue server is accessed by the observers
+    with the observer pattern, "subscribing to certain messages" knowing only about the expected message (or not, in some cases),
+    while knowing nothing about the message sender itself; the sender also may know nothing about the observers.
+
+- in early implementations of multi-window operating systems like OS/2 and Windows, the terms "publish-subscribe pattern" and
+  "event driven software development" were used as a synonym for the observer pattern
+
+- [uncoupled]: by sampling the view on regular intervals
+    Frequent updates may cause the view to become unresponsive (e.g by invoking many repaint calls); such observers should instead use a timer.
+    Thus instead of being overloaded by change message, the observer will cause the view to represent the approximate state of the model
+    at a regular interval. This mode of observer is particularly useful for progress bars, where the underlying operation's progress
+    changes with several times per second.
+
+11. 💀 ➡️ 👱‍ Template method:
+- [definition]: defines the program skeleton of an algorithm in an operation, deferring some steps to subclasses.
+- lets one redefine certain steps of an algorithm without changing the algorithm's structure
+- The template ensures that the overarching algorithm is always followed
+- At run-time, a concrete class is instantiated. A main method inherited from the base class is called, which then may call other methods
+  defined by both the base class and subclasses. This performs the overall algorithm in the same steps every time, but the details of some
+  steps depend on which subclass was instantiated.
+- there are some non-abstract methods present in the template and other abstract methods - which provide the expressive freedom needed
+
+- [usage case]:
+  The template method is used in frameworks, where each implements the invariant parts of a domain's architecture, leaving "placeholders"
+  for customization options.
+
+- This pattern is an example of inversion of control because the high-level code no longer determines what algorithms to run;
+  a lower-level algorithm is instead selected at run-time.
+
+12.📀 📀 📀 ⬅️ Object pool:
+- [definition]: initialized objects kept ready to use – a "pool" – rather than allocating and destroying them on demand
+- a client of the pool will request an object from the pool and perform operations on the returned object
+- When the client has finished, it returns the object to the pool rather than destroying it (automatic / manually)
+- Object pools are primarily used for performance: in some circumstances, object pools significantly improve performance.
+- The lifetime of the objects in the pool is complex to manage!
+
+- [large heavy to instantiate objects]:
+  When it is necessary to work with a large number of objects that are particularly expensive to instantiate and each object is only
+  needed for a short period of time, the performance of an entire application may be adversely affected.
+  An object pool design pattern may be deemed desirable in cases such as these.
+
+- When a new object is needed, it is requested from the pool. If a previously prepared object is available it is returned immediately,
+  avoiding the instantiation cost.
+
+- [use case]:
+    - Object pooling can offer a significant performance boost in situations where the cost of initializing a class instance is high
+      and the rate of instantiation and destruction of a class is high – in this case objects can frequently be reused
+
+- [example]:
+    - As SQL Server database connections can be slow to create, a pool of connections is maintained
+    - socket connections, threads and large graphic objects like fonts or bitmaps.
+
+- The pool is responsible for resetting the objects, not the clients.
+- [object reset risk]:
+  Inadequate resetting of objects may also cause an information leak.
+  If an object contains confidential data (e.g. a user's credit card numbers) that isn't cleared before the object is passed to a new client,
+  a malicious or buggy client may disclose the data to an unauthorized party.
