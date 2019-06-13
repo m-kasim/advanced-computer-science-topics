@@ -1,0 +1,201 @@
+Blockchain. Structure. Uses. Types of blockchains. Examples.
+
+1. Blockchain:
+- democratic, decentralized, remove the middle man, disrupt industries
+
+- [definition]: stores a [ledger] of transactions.
+- growing list of records, called blocks, which are linked using cryptography
+- Each block contains a cryptographic hash of the previous block,[6] a timestamp, and transaction data (generally represented as a Merkle tree).
+- typically managed by a peer-to-peer network collectively adhering to a protocol for inter-node communication and validating new blocks
+- [alteration by majority]: Once recorded, the data in any given block cannot be altered retroactively without alteration of all subsequent
+  blocks, which requires consensus of the network majority
+- The invention of the blockchain for bitcoin made it the first digital currency to solve the double-spending problem without the need of a trusted authority or central server
+- [proof of work]:if you tamper one block, you will need to recalculate all other blocks
+- [p2p network]: everyone can join. when a new block is created, this block is sent to everyone for verificiation => consensus
+- tampering: control 51% of the network
+- blockchain applications: https://www.youtube.com/watch?v=aQWflNQuP_o
+
+- [immutable]: the [ledger] is immutable
+- [blockchain] is based on [hash codes], [hash puzzles] and [merkle trees]
+- [deterministic]: hashes used in blockchain are deterministic.
+                   deterministic system is a system in which no randomness is involved in the development of future states of the system
+- limit: 2400 transactions per block of bitcoin
+- transaction fees are optional
+- [hashing]: create "unique" irreversable (but checkable) output from an input
+- [proof of work]: miners have to compute a hash with first 30 zeroes => if a block satisfies this requirement => it is created
+- each time the number of required zeroes increases!
+
+hash_function ("Jordan Peterson")   => d9kkdkl219213ij123g
+hash_function ("Jordan Petersonn")  => f0kd980dka02j294mca
+
+- [peer-to-peer network]: [nodes] hold the [ledger] of facts + history of updates of all facts in the [ledger]
+- [decentralized]: the blockchain has no owner
+- [transactions]: - public and verified by the [miners].
+                  - once a transaction is made, it is copied to all nodes and it is [immutable]
+                  - transactions cannot be reversed (you can make the opposite transaction)
+                  - when a transaction is verified, all [nodes] have to agree that its hash are valid
+                    (so this prevents someone sending more/less resources than they have to someone else)
+- [security]: since all [nodes] have a copy of the [ledger], even if some of them are destroyed, the [ledger] is maintained
+- [quantum computers]: blockchain is not safe against [quantum computers] attacking the private keys. therefore [quantum cryptography] is now developed
+
+- [blocks]: https://etherscan.io/block/7944897 | http://blockchain.info
+2. Bitcoin:
+- [wallet]: public key. users can have more than one [public keys]
+- anonymous coins: Monero
+- Bitcoin uses the transaction data, and ‘chains’ the previous block’s hash value as a starting input for the next block’s.
+Miners then race to tack on massive random numbers until they find one that produces a hash that matches a specific pattern with a
+certain level of difficulty
+- [cryptocurrencies]: they are not guaranteed by the government or army to be accepted everywhere!
+- [miners] are combined in pools
+- [miming pool]: split the award if they randomly decode a hash
+- [transactions]: if you have 5 bitcoins and would like to send 1 to a friend => sends him 1 and sends you back 4
+
+- [miners]:
+    1. get a couple of [transactions] together
+    2. form them in a block
+    3. this [block] has a [hash] code
+
+- [block]:
+ -----------------------------------------
+|   👶 previous block hash                |
+ -----------------------------------------
+|   🌀 nonce value (random)               |
+ -----------------------------------------
+|   💰 transaction: Jocko  =(5)=> Peter   |
+ -----------------------------------------
+|   💰 transaction: Ronald =(2)=> Paul    |
+|-----------------------------------------
+|   🔒 new hash                           |
+ -----------------------------------------
+
+[new hash] = hash ( [previous hash] + [nonce] + [transactions])
+--------------
+- [merkle trees]
+
+  [A+B + B + C]
+    /    \
+  [A+B] [B+C]
+  /   \ /  \
+[A]   [B]  [C]
+
+
+- if [B] changes, all blocks which have a hash, generated indirectly by [B] become invalid!
+- the [merkle trees] provide security that the transactions are not tampered!
+- the miner tries to satisfy the hash puzzle of the [block]
+- everyone can try to form a [block]
+- when a [block] is solved, it is added to the [chain]
+- [problem]: sometimes two (or more) people can solve the same [block] at the time, so two [block chains] are added to the previous (of that) [block]
+  instead of one
+- [problem]: this means that a chain is divided to two portions => the longer one wins (by calculations appended to it via the community)
+             => the client has to wait for another [miner] to re-pick the transaction, form a block and calculate it
+- [transactions] take about 1 hour to be calculated in a block
+- [finishing a block]: when a miner finishes creating a block, he/she gets X amount of coins
+- the majority of the people in the community decide which (longer) chain to follow, discarding the shorter chain
+- if a clients [transactions] end up in discarded short [chain], these transactions are released to the [ether] and must be recalculated
+- the mathematical difficulty of the network reflects loosely the current calculation power of the network
+- [max bitcoins]: there will be a point when all bitcoins will be calculated and no new bitcoins will be issued for creating a block.
+  then [miners] will be rewarded via transaction fees. people who make [transactions] will have to sacrifice some of their [coins].
+  this means that [miners] might lose some of their motivation to verify [transactions]
+- the reward for creating a new [block] is constantly reduced
+- bitcoin limit: 21M coins
+- [mining pools]: bitcoin is controlled by large pools. if 3 of them combine, they can deceive the ledger
+- [block]: a miner checks all transactions inside a block, and if the block is valid, it is added to the blockchain (and the miner
+           receives the fees for the transactions inside the block)
+
+2. Abuse of bitcoin
+- Saudi Arabia: women launder money
+- China: Gambling
+- abuse: convert bitcoin to monero (because is untrackable)
+
+3. Smart contracts:
+- [hyperledger]: for corporates: is a multi-project open source collaborative effort hosted by The Linux Foundation, created to advance
+  cross-industry blockchain technologies
+- if theres a blockchain but one company owns all the nodes => it can be still corrupt
+- sometimes B2B companies group and make together a blockchain
+- it acts like an escrow money
+- [digital contracts]:
+- *[gas]: you need to pay for your transaction to be run
+- [tokens]: [smart contracts] produce [tokens] based on [rukes]
+- Ethereum: [smart contracts platform]
+- software, online, hardware wallet
+- [example]: if the logic is true => reward tokens to user
+- Solidity is an object-oriented, high-level language for implementing smart contracts
+- Solidity runs on EVM (Ethereum Virtual Machine)
+- [digital notaries]: currently there are no blockchain notaries to validate house sale deals
+
+4. Decentralized apps:
+- person-to-person by cutting the middleman
+- [example]: bet 1 [coin] for flight insurance and get [1000] coins if the risk happens
+- [mining pools]: they make the [blockchain] centralized rather than decentralized!
+
+5. Initial Coin Offering: Fund raising
+- raising funding by ICO / token sales
+- they are a speculative bubble
+- [cryptocurrency convertor shops]: coinbase
+- ICOs claim that their blockchain will become massive and investors will be able to sell their coins
+
+6. Types:
+types of blockchain networks — public blockchains, private blockchains, consortium blockchains .
+Permissionless
+
+Permissioned blockchains use an access control layer to govern who has access to the network.[38] In contrast to public blockchain networks, validators on private blockchain networks are vetted by the network owner. They do not rely on anonymous nodes to validate transactions nor do they benefit from the network effect.[citation needed] Permissioned blockchains can also go by the name of 'consortium' blockchains
+"Within a private blockchain there is also no 'race'; there's no incentive to use more power or discover blocks faster than competitors. This means that many in-house blockchain solutions will be nothing more than cumbersome databases.
+
+
+Public blockchains
+A public blockchain has absolutely no access restrictions. Anyone with an Internet connection can send transactions to it as well as become a validator (i.e., participate in the execution of a consensus protocol).[88][self-published source?] Usually, such networks offer economic incentives for those who secure them and utilize some type of a Proof of Stake or Proof of Work algorithm.
+
+Some of the largest, most known public blockchains are the bitcoin blockchain and the Ethereum blockchain.
+
+Private blockchains
+A private blockchain is permissioned.[38] One cannot join it unless invited by the network administrators. Participant and validator access is restricted.
+
+This type of blockchains can be considered a middle-ground for companies that are interested in the blockchain technology in general but are not comfortable with a level of control offered by public networks. Typically, they seek to incorporate blockchain into their accounting and record-keeping procedures without sacrificing autonomy and running the risk of exposing sensitive data to the public internet.[citation needed]
+
+Hybrid blockchains
+A hybrid blockchain[89] simply explained is a combination between different characteristics both public and private blockchains have by design. It allows to determine what information stays private and what information is made public. Further decentralization in relation to primarily centralized private blockchains can be achieved in various ways. Instead of keeping transactions inside their own network of community run or private nodes, the hash (with or without payload) can be posted on completely decentralized blockchains such as bitcoin. Dragonchain uses Interchain[90] to host transactions on other blockchains. This allows users to operate on different blockchains, where they can selectively share data or business logic. Other blockchains like Wanchain use interoperability mechanisms such as bridges.[91][92] By submitting the hash of a transaction (with or without the sensitive business logic) on public blockchains like bitcoin or Ethereum, some of the privacy and blockchain concerns are resolved, as no personal identifiable information is stored on a public blockchain. Depending on the hybrid blockchain its architecture, multicloud solutions allow to store data in compliance with General Data Protection Regulation and other geographical limitations while also leveraging bitcoin's global hashpower to decentralize transactions.
+
+
+
+7. Proof of Work:
+
+8. Other
+n August 2014, the bitcoin blockchain file size, containing records of all transactions that have occurred on the network, reached 20 GB (gigabytes).[13] In January 2015, the size had grown to almost 30 GB, and from January 2016 to January 2017, the bitcoin blockchain grew from 50 GB to 100 GB in size
+ blockchain database is managed autonomously using a peer-to-peer network and a distributed timestamping server. They are authenticated by mass collaboration powered by collective self-interests.[19] Such a design facilitates robust workflow where participants' uncertainty regarding data security is marginal.
+
+Whenever a peer receives a higher-scoring version (usually the old version with a single new block added) they extend or overwrite their own database and retransmit the improvement to their peer
+
+For example, bitcoin uses a proof-of-work system, where the chain with the most cumulative proof-of-work is considered the valid one by the network
+
+A hard fork is a rule change such that the software validating according to the old rules will see the blocks produced according to the new rules as invalid. In case of a hard fork, all nodes meant to work in accordance with the new rules need to upgrade their software.
+
+If one group of nodes continues to use the old software while the other nodes use the new software, a split can occur. For example, Ethereum has hard-forked to "make whole" the investors in The DAO, which had been hacked by exploiting a vulnerability in its code. In this case, the fork resulted in a split creating Ethereum and Ethereum Classic chains.
+
+ no central point of failure
+
+The great advantage to an open, permissionless, or public, blockchain network is that guarding against bad actors is not required and no access control is needed
+
+9. uses:
+Blockchain technology can be integrated into multiple areas. The primary use of blockchains today is as a distributed ledger for cryptocurrencies, most notably bitcoin.
+
+Cryptocurrencies
+Main article: Cryptocurrency
+Most cryptocurrencies use blockchain technology to record transactions. For example, the bitcoin network and Ethereum network are both based on blockchain. On 8 May 2018 confirmed that it is opening a new blockchain group[52] which will be headed by David Marcus who previously was in charge of Messenger. According to The Verge Facebook is planning to launch its own cryptocurrency for facilitating payments on the platform
+
+Smart contracts
+Main article: Smart contract
+Blockchain-based smart contracts are proposed contracts that could be partially or fully executed or enforced without human interaction.[54] One of the main objectives of a smart contract is automated escrow. An IMF staff discussion reported that smart contracts based on blockchain technology might reduce moral hazards and optimize the use of contracts in general. But "no viable smart contract systems have yet emerged." Due to the lack of widespread use their legal status is unclear
+
+Blockchain with video games
+Some video games are based on blockchain technology. A blockchain game CryptoKitties, launched in November 2017.[64] The game made headlines in December 2017 when a cryptokitty character - an in-game virtual pet - was sold for more than US$100,000.[65] CryptoKitties illustrated scalability problems for games on Ethereum when it created significant congestion on the Ethereum network with about 30% of all Ethereum transactions being for the game.[66]
+
+Cryptokitties also demonstrated how blockchains can be used to catalog game assets
+
+Supply chain
+There are a number of efforts and industry organizations working to employ blockchains in supply chain logistics and supply chain management.
+
+The Blockchain in Transport Alliance (BiTA) works to develop open standards for supply chains.[citation needed]
+
+Everledger is one of the inaugural clients of IBM's blockchain-based tracking service.[68]
+
+Walmart and IBM are running a trial to use a blockchain-backed system for supply chain monitoring — all nodes of the blockchain are administered by Walmart and are located on the IBM cloud.[69]

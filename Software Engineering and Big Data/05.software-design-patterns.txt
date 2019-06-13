@@ -91,7 +91,12 @@ https://www.youtube.com/channel/UCbF-4yQQAWw-UnuCd2Azfzg/videos
     2. create new objects by copying a Prototype object.
 
 - [use case]:
-The rule of thumb could be that you would need to clone() an Object when you want to create another Object at runtime that is a true copy of the Object you are cloning. True copy means all the attributes of the newly created Object should be the same as the Object you are cloning. If you could have instantiated the class by using new instead, you would get an Object with all attributes as their initial values. For example, if you are designing a system for performing bank account transactions, then you would want to make a copy of the Object that holds your account information, perform transactions on it, and then replace the original Object with the modified one. In such cases, you would want to use clone() instead of new.
+The rule of thumb could be that you would need to clone() an Object when you want to create another Object at runtime that is a true copy of
+the Object you are cloning. True copy means all the attributes of the newly created Object should be the same as the Object you are cloning.
+If you could have instantiated the class by using new instead, you would get an Object with all attributes as their initial values.
+For example, if you are designing a system for performing bank account transactions, then you would want to make a copy of the Object
+that holds your account information, perform transactions on it, and then replace the original Object with the modified one.
+In such cases, you would want to use clone() instead of new.
 
 7. 🎛 ➡️ 🎛 Adapter/Wrapper:
 - lets the interface of a class communicate with another incompatible interface of another class via the [adapter]

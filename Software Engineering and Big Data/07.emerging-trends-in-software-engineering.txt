@@ -1,0 +1,20 @@
+Emerging tendencies in SE: Edge computing. DevOps. Continuous integration. Progressive applications. Low-code applications. Quantum computing.
+
+1. Edge computing.
+- [definition]: distributed computing paradigm which brings computer data storage closer to the location where it is needed
+- edge computing pushes applications, data and computing power (services) away from centralized points to locations closer to the user
+- edge computing does not need contact with any centralized cloud, although it may interact with one
+- [benefits]: reduce the volumes of data that must be moved, the consequent traffic, and the distance the data must travel
+- [example]: camera sensors carry on the face recognition locally in the device, and transfer only the detected class via internet => bandwidth saved
+- [pixel streaming]: games are computed in the cloud and the thin client receives only the animation via internet
+- [edge node]: mostly one or two hops away from the mobile client to meet the response time constraints for real-time game
+
+2. DevOps.
+
+3. Continuous integration.
+
+4. Progressive applications.
+
+5. Low-code applications.
+
+6. Quantum computing.
