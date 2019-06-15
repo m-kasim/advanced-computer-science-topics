@@ -2,19 +2,217 @@ Emerging tendencies in SE: Edge computing. DevOps. Continuous integration. Progr
 
 1. Edge computing.
 - [definition]: distributed computing paradigm which brings computer data storage closer to the location where it is needed
+- [reason]: edge computing was born, because there will be more and more devices reporting data to servers in the era of IoT
 - edge computing pushes applications, data and computing power (services) away from centralized points to locations closer to the user
 - edge computing does not need contact with any centralized cloud, although it may interact with one
 - [benefits]: reduce the volumes of data that must be moved, the consequent traffic, and the distance the data must travel
 - [example]: camera sensors carry on the face recognition locally in the device, and transfer only the detected class via internet => bandwidth saved
 - [pixel streaming]: games are computed in the cloud and the thin client receives only the animation via internet
 - [edge node]: mostly one or two hops away from the mobile client to meet the response time constraints for real-time game
+- [control problem]: increased decentralization might result in reduced ability to control device specifics or edit signal specifics
 
 2. DevOps.
+- [definition]: reduce the gap between [developers] (development) and [administrators] (operating) via [process automation]
+- software development practices that combines [software development] (Dev) and [information technology operations] (Ops) to
+  shorten the systems development life cycle while delivering features, fixes, and updates frequently
+- a set of practices intended to reduce the time between committing a change to a system and the change being placed into normal production,
+  while ensuring high quality"
+- IT performance is strongly correlated with DevOps practices like source code management and continuous delivery
+- [focus on microservices architecture]:
+  Small size service allows the architecture of an individual service to emerge through continuous refactoring, hence reducing the need
+  for a big upfront design[citation needed] , allows for releasing the software early and continuously
+
+[elements]:
+1. source code revision:                    Git
+2. automated code testing:                  Jenkins
+3. automatic code deployment to production: Chef, Puppet, SaltStack
+4. monitor logs:                            New Relic
+
+- [DevSecOps]: security is an essential part of all processes
+- [DataOps]: merge all processes of handling data (procurement, storage, analytics, archiving...)
+
+[goals]:
+1. Improved deployment frequency;
+2. Faster time to market;
+3. Lower failure rate of new releases;
+4. Shortened lead time between fixes;
+5. Faster mean time to recovery
+
+[DevOps toolchain]:
+1. 👩‍💻 Coding – code development and review, source code management tools, code merging
+2. ▶️ Building – continuous integration tools, build status
+3. 🔨 Testing – continuous testing tools that provide quick and timely feedback on business risks
+4. 📦 Packaging – artifact repository, application pre-deployment staging
+5. 🎀 Releasing – change management, release approvals, release automation
+6. 🎛 Configuring – infrastructure configuration and management, infrastructure as code tools
+7. 📺 Monitoring – applications performance monitoring, end-user experience
 
 3. Continuous integration.
+- [definition]: regularly merging all developer's code into a single repository, then building the code and testing it for errors automatically
+- prevent integration problems, referred to as "integration hell"
+- running and passing all unit tests in the developer's local environment before committing to the mainline
+- [build servers]: automatically run the unit tests periodically or even after every commit and reported the results to the developers.
+- [continuous deployment]: produce software in short cycles, ensuring that the software can be reliably released at any time and,
+  when releasing the software automatically
+- [integration tests]: usually run automatically on a CI server when it detects a new commit.
+- Instead, the test environment, or a separate pre-production environment ("staging") should be built to be a scalable version of the
+  production environment to alleviate costs while maintaining technology stack composition and nuances
+- Continuous Integration is not necessarily valuable if the scope of the project is small or contains untestable legacy code
 
 4. Progressive applications.
+- [definition]:  mobile app delivered through the web, built using common web technologies including HTML, CSS and JavaScript and
+  allowing  access to hardware-driven functionalities of the mobile device
+- help web apps closer to the native apps (progressively)
+- write code once => run "natively" in the browser of all devices (and access hardware features)
+- support of the features depend on the browser
+- [app shell model]: allow the app to be loaded offline by being stored in the phone's memory.
+  Some progressive web apps use an architectural approach called the App Shell Model. In this model, service workers store the
+  Basic User Interface or "shell" of the responsive web design web application in the browser's offline cache.
+ This model allows for PWAs to maintain native-like use with or without web connectivity.
+ This can improve loading time, by providing an initial static frame, a layout or architecture into which content can be loaded
+ progressively as well as dynamically
+- [service worker]: A service worker is a JavaScript file that operates as a type of web worker.
+  They work separately from the main browser thread to handle push notifications, synchronize data in the background, cache or
+  retrieve resource requests, intercept network requests and receive centralized updates
+
+- intended to work on any platform that uses a standards-compliant browser. Functionality includes working offline, push notifications,
+  and device hardware access, enabling creating user experiences similar to native applications on mobile devices
+- advancement in HTML, JS, CSS and [responsive design] made it possible to making native-like experiences possible on a website,
+  and therefore on PWAs.
+- Progressive web apps are designed to work on any browser that is compliant with web standards.
+  As a result, developers should be able to build cross-platform apps more easily than they would with native apps.
+
+[characteristics]:
+Progressive — Works for every user, regardless of browser choice, using progressive enhancement principles.
+Responsive — Fits any form factor: desktop, mobile, tablet, or forms yet to emerge.
+Connectivity independent — Service workers allow offline uses, or on low quality networks.
+App-like — Feels like an app to the user with app-style interactions and navigation.
+Fresh — Always up-to-date due to the service worker update process.
+Safe — Served via HTTPS to prevent snooping and ensure content hasn't been tampered with.
+Discoverable — Identifiable as an “application” by manifest.json and service worker registration, and discoverable by search engines.
+Re-engageable — Ability to use push notifications to maintain engagement with the user.
+Installable — Provides homescreen icons without the use of an App Store.
+Linkable — Can easily be shared via a URL, and does not require complex installation.
 
 5. Low-code applications.
+- [definition]:
+ software that provides an environment programmers use to create application software through graphical user interfaces and configuration
+instead of traditional computer programming
+- [custom code addable]: shifting focus towards general purpose of applications, with the ability to add in custom code when needed or desired
+- based on the principles of model-driven design, automatic code generation, and visual programming
+- Mobile accessibility is one of the driving factor
+- demand for software apps rises faster than qualified software engineers
+- [low code vs no code]:
+No-code development platforms are closely related to low-code development platforms as both are designed to expedite the application
+development process. These platforms have both increased in popularity as companies deal with the parallel trends of an increasingly
+mobile workforce and a limited supply of competent software developers
+- [End-user computing]: (EUC) refers to systems in which non-programmers can create working applications
 
 6. Quantum computing.
+- [quantum mechanics]: unlike classical mechanics which assign hard property values to objects,[ quantum mechanics] assigns only
+  a range of probabilities in which that particle might be given its momentum and momentum probability
+- the size of [transistors] is constantly reduced, reaching the sizes of an atom
+- traditional computers encode information in 0 and 1 via [shannon entropy]
+- [transistor]: a physical passage which stops the passage of electrons
+- [qubits]: they have values of a [0] and [1] and can be at both states at the same time [superposition].
+  in reality, a quantum particle has a probability between [0] and [1], but when the measurement of the qubit begins, it has to
+  resolve to either one of the values.
+- while the value of a [quantum particle] is not determined, it can be at state [0], [1], or both (as quantum particles have both the
+  characteristics of a [particle] and a [wave])
+- [quantum entanglement]: [quantum particles] can react to changes in a nearby [quantum particle] "near" them instantly and in calculated way.
+  if two [quantum particles] (e.g. electrons or protons) are put side to side, they influence each other (up to
+  very high distances), thus also influencing each other's value. for instance, if the value of the first particle collapses to [0]
+  then we can calculate its responding pair will collapse to [1]. this makes increased parallel calculations in quantum computers possible
+- [qubits power]: the more [qubits] you put together, the more values can be encoded (due to [quantum particle-wave duality] and
+  [quantum entanglement])
+- [quantum gates]: it can save computation time via new logic gates which exploit [quantum entanglement] rules and modulate their
+  [superpositions], by taking a [superposition] as input and output and collapsing finally to [0] or [1]
+
+- [quantum tunneling]: now they are so small, that electrons are able to pass through blocking gates via the
+- [quantum computers] are researched due to the limitations imposed by [quantum tunneling]
+
+
+- [superposition]: [probability wave]: unobserved qubit is a probability between [0] and [1] (e.g. 0.54), but when it is measured, it has to be [0] or [1]
+- [entanglement]: two [qubits] are influencing each other's values
+- [security threat]: quantum computers are a major danger for current cryptographic storage
+- [heisenberg uncertainty]: electrons may be considered (to a certain probability) to be located somewhere within a given region of space,
+  but with their exact positions unknown. Contours of constant probability density, often referred to as "clouds", may be drawn around
+  the nucleus of an atom to conceptualize where the electron might be located with the most probability. thus, the [electron] has
+  a [probability wave] where it can be (it cannot be seen), when it collapses (it can be seen)
+- [probability wave]: an abstraction, it allows one to compute the probability of finding an electron in a particular region around the
+  nucleus at a particular time
+- seemingly "related properties" of a particle in quantum mechanics (actually) do not commute, and do not influence each other
+  example (white soft electrons and black hard electrons)
+- [wave function collapse]: the basic idea is that when a quantum system interacts with a measuring apparatus, their respective wave
+  functions become entangled, so that the original quantum system ceases to exist as an independent entity
+- Generally, quantum mechanics does not assign definite values. Instead, it makes a prediction using a probability distribution;
+  that is, it describes the probability of obtaining the possible outcomes from measuring an observable
+
+- [use cases]: quantum computers are not estimated to replace regular binary computers entirely, but rather solve specialized domain problems
+1. database search
+2. cracking cryptographic hashes
+3. simulation (medicine, quantum mechanics)
+
+- [quantum theory]: https://en.wikipedia.org/wiki/Quantum_superposition
+- [definition]:
+- classical physics can explain particles and their relationships coarsely on a macro scale, but when they are scaled down to small
+particles, incongruities start to occur
+- [paradox - photoelectric effect experiment]:
+  when ultraviolet light hits a zinc plate, it charges positively because some of the electrons are "reflected",
+  thus "bouncing out" from the plate.
+- Elbert Einstein formulate a theory based on these experiments, suggesting a theory that light energy does not consist of continuous
+  light beams, but of small discrete quantizied energy states (particles) (thus the name quantum physics) called photons
+
+- [superposition]: the particle can be at the two states some of the time, and then at one state (randomly)
+
+- [particle-wave duality]: we see [electrons] only in the real world, but the math suggests that they have wave frequencies
+- [modern quantum physics]: it tries to define via mathematical formalisms the position probability amplitudes, momentum and other
+  characteristics of the smallest particles in nature
+- [wave probabilities]: all particles have the characteristics of a frequency wave with [probability] where the [electron] is
+- [wave-particle duality]: It was found that subatomic particles and electromagnetic waves are neither simply particle nor wave but
+  have certain properties of each. This originated the concept of wave–particle duality
+- Photons in a Mach–Zehnder interferometer exhibit wave-like interference and particle-like detection at single-photon detectors.
+- The discovery that particles are discrete packets of energy with wave-like properties led to the branch of physics dealing with atomic
+  and subatomic systems which is today called quantum mechanics.
+- [quantum entanglement]:
+  physical phenomenon that occurs when pairs or groups of particles are generated, interact, or share spatial proximity in ways such that
+  the quantum state of each particle cannot be described independently of the state of the others, even when the particles are separated by
+  a large distance.
+
+  Measurements of physical properties such as position, momentum, spin, and polarization, performed on entangled particles are found to be
+  correlated. For example, if a pair of particles is generated in such a way that their total spin is known to be zero, and one particle is
+  found to have clockwise spin on a certain axis, the spin of the other particle, measured on the same axis, will be found to be
+  counterclockwise, as is to be expected due to their entanglement.
+
+
+- [formal language]: wave mechanics (differential equations) and matrix mechanics (linear algebra)
+
+- [quantum computing]:
+Instead of using classical bits, quantum computers use qubits, which can be in superpositions of states. Quantum programmers are able to
+ manipulate the superposition of qubits in order to solve problems that classical computing cannot do effectively, such as searching
+ unsorted databases or integer factorization.
+
+Quantum entanglement forms the basis of quantum cryptography, which is proposed for use in high-security commercial applications in banking and government.
+
+Superfluidity, the frictionless flow of a liquid at temperatures near absolute zero, is one well-known example. So is the closely related phenomenon of superconductivity, the frictionless flow of an electron gas in a conducting material (an electric current) at sufficiently low temperatures.
+
+[qubits]:
+no-teleportation theorem, which states that a qubit cannot be (wholly) converted into classical bits; that is, it cannot be "read".
+no cloning theorem, which prevents an arbitrary qubit from being copied.
+no-deleting theorem, which prevents an arbitrary qubit from being deleted.
+no-broadcast theorem, Although a single qubit can be transported from place to place (e.g. via quantum teleportation), it cannot be delivered to multiple recipients.
+
+- [correspondence principle]: which states that the predictions of quantum mechanics reduce to those of classical mechanics when a system moves
+  to higher energies or, equivalently, larger quantum numbers, i.e. whereas a single particle exhibits a degree of randomness, in systems
+  incorporating millions of particles averaging takes over and, at the high energy limit, the statistical probability of random behavior
+  approaches zero. In other words, classical mechanics is simply a quantum mechanics of large systems.
+
+- [quantum gravity]:
+  the formulation of a complete theory of quantum gravity is hindered by apparent incompatibilities between general relativity
+  (the most accurate theory of gravity currently known) and some of the fundamental assumptions of quantum theory.
+  The resolution of these incompatibilities is an area of active research, and theories such as string theory are among the possible
+  candidates for a future theory of quantum gravity.
+
+Additional:
+https://en.wikipedia.org/wiki/Quantum_information
+https://en.wikipedia.org/wiki/Quantum_computing
