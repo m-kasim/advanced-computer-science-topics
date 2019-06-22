@@ -175,27 +175,23 @@ If one group of nodes continues to use the old software while the other nodes us
 
 The great advantage to an open, permissionless, or public, blockchain network is that guarding against bad actors is not required and no access control is needed
 
-9. uses:
+9. Uses:
 Blockchain technology can be integrated into multiple areas. The primary use of blockchains today is as a distributed ledger for cryptocurrencies, most notably bitcoin.
 
-Cryptocurrencies
-Main article: Cryptocurrency
+[Cryptocurrencies]
 Most cryptocurrencies use blockchain technology to record transactions. For example, the bitcoin network and Ethereum network are both based on blockchain. On 8 May 2018 confirmed that it is opening a new blockchain group[52] which will be headed by David Marcus who previously was in charge of Messenger. According to The Verge Facebook is planning to launch its own cryptocurrency for facilitating payments on the platform
 
-Smart contracts
-Main article: Smart contract
+[Smart contracts]
+
 Blockchain-based smart contracts are proposed contracts that could be partially or fully executed or enforced without human interaction.[54] One of the main objectives of a smart contract is automated escrow. An IMF staff discussion reported that smart contracts based on blockchain technology might reduce moral hazards and optimize the use of contracts in general. But "no viable smart contract systems have yet emerged." Due to the lack of widespread use their legal status is unclear
 
-Blockchain with video games
-Some video games are based on blockchain technology. A blockchain game CryptoKitties, launched in November 2017.[64] The game made headlines in December 2017 when a cryptokitty character - an in-game virtual pet - was sold for more than US$100,000.[65] CryptoKitties illustrated scalability problems for games on Ethereum when it created significant congestion on the Ethereum network with about 30% of all Ethereum transactions being for the game.[66]
-
+[Blockchain with video games]
+Some video games are based on blockchain technology. A blockchain game CryptoKitties, launched in November 2017. The game made headlines in December 2017 when a cryptokitty character - an in-game virtual pet - was sold for more than US$100,000.[65] CryptoKitties illustrated scalability problems for games on Ethereum when it created significant congestion on the Ethereum network with about 30% of all Ethereum transactions being for the game.[66]
 Cryptokitties also demonstrated how blockchains can be used to catalog game assets
 
-Supply chain
+[Supply chain]
 There are a number of efforts and industry organizations working to employ blockchains in supply chain logistics and supply chain management.
 
-The Blockchain in Transport Alliance (BiTA) works to develop open standards for supply chains.[citation needed]
-
-Everledger is one of the inaugural clients of IBM's blockchain-based tracking service.[68]
+The Blockchain in Transport Alliance (BiTA) works to develop open standards for supply chains.
 
 Walmart and IBM are running a trial to use a blockchain-backed system for supply chain monitoring — all nodes of the blockchain are administered by Walmart and are located on the IBM cloud.[69]

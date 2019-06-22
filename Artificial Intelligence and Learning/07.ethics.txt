@@ -1,0 +1,6 @@
+8	Philosophy and ethics
+8.1	The limits of artificial general intelligence
+8.2	Potential harm
+8.3	Ethical machines
+8.4	Machine consciousness, sentience and mind
+8.5	Superintelligence

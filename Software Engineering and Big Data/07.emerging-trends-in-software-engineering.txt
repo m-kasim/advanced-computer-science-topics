@@ -212,7 +212,3 @@ no-broadcast theorem, Although a single qubit can be transported from place to p
   (the most accurate theory of gravity currently known) and some of the fundamental assumptions of quantum theory.
   The resolution of these incompatibilities is an area of active research, and theories such as string theory are among the possible
   candidates for a future theory of quantum gravity.
-
-Additional:
-https://en.wikipedia.org/wiki/Quantum_information
-https://en.wikipedia.org/wiki/Quantum_computing

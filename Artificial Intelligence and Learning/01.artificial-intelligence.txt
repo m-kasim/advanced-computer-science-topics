@@ -1,4 +1,4 @@
-Artificial Intelligence. Goals. Machine learning: Supervised, unsupervised and semisupervised learning. Types of approaches.
+Artificial Intelligence. Goals. Machine learning: Supervised, Unsupervised and semisupervised learning. Types of approaches.
 
 1. General:
 - [Data Mining]:
@@ -10,3 +10,401 @@ Artificial Intelligence. Goals. Machine learning: Supervised, unsupervised and s
     Data is processed, queried and analyzed immediately, unlike [batch processing], which stores data for later processing in bulk.
 - [Graph Processing]:
     Many domains can be represented as graphs, as this resembles their natural features.
+
+- [definition]: intelligence demonstrated by machines: a system’s ability to correctly interpret external data, to learn from such data,
+  and to use those learnings to achieve specific goals and tasks through flexible adaptation.
+- [history]: founded as an academic discipline in 1956, and in the years since has experienced several waves of optimism
+- [AI winters]:
+- AI research has been divided into subfields that often fail to communicate with each other
+- [ai effect]: as machines become increasingly capable, tasks considered to require "intelligence" are often removed from the definition of AI
+
+- [classification of AI]:
+1. [analytical]: generating cognitive representation of the world and using learning based on past experience to inform future decisions
+2. [human-inspired]: as elements from cognitive and emotional intelligence; understanding human emotions, in addition to cognitive elements,
+                     and considering them in their decision making
+3. [humanized artificial intelligence]: is able to be self-conscious and is self-aware in interactions with others.
+
+- [turing's theory of computation]: which suggested that a machine, by shuffling symbols as simple as [0] and [1],
+could simulate any conceivable act of mathematical deduction
+- [turing test]: if a human could not distinguish between responses from a machine and a human, the machine could be considered "intelligent"
+- 1943, artificial neurons
+- AI was born at Dartmouth College in 1956
+- 1960s: US funding in AI R&D
+- 1974: Progress slowndown => AI winter
+- 1980s: Expert systems
+- 1987: Second AI Winter
+- 1997: Deep Blue beats Garry Kasparov
+- 2000s: AI used in data mining, med. diagnose as CPU power increase
+- 2011: IBM Waston wins Jeopardy!
+- 2012: Geoffrey Hinton and Andrew Ng. Data hungry deep learning algorithms.
+- 2013s: Personal assistants in smartphones
+- 2012-2017: From sporadic usage to more than 2700 projects using AI in Google
+- 2016: China invests to become an "AI Superpower"
+- 2017: Low adoption in company strategic planning
+
+- [general]: AI analyzes its environment and takes actions that maximize its chance of success
+- [goal function]: utility function (or goal) can be simple ("1 if the AI wins a game of Go, 0 otherwise")
+  or complex ("Do mathematically similar actions to the ones succeeded in the past")
+- [goals]: explicitly defined, or induced
+- [reinforcement learning]: goals can be implicitly induced by rewarding some types of behavior or punishing others]
+- [evolutionary systems fitness function]: induce goals by using a [fitness function] to mutate and preferentially replicate high-scoring AI
+    systems, similarly to how animals evolved to innately desire certain goals such as finding food.
+
+- [🙋 ➡️ 👨‍👨‍👦‍‍ nearest neighbour (kNN)]: (this algorithm has a bad computational complexity)
+1. pick an [entity] which needs its class to be [determined]
+2. pick [k] (amount of neighbours to ask)
+3. from all [possible neighbors] get only [k] neighbors which are nearest.
+4. ask the returned [k nearest neighbors] about their classes
+5. whichever group of classes is dominant among the selected [k nearest neighbors] is suggested as the new class for the [entity] which
+we search for.
+
+[learning]: Many AI algorithms are capable of learning from data; they can enhance themselves by learning new heuristics
+  (strategies, or "rules of thumb", that have worked well in the past), or can themselves write other algorithms
+- it is almost never possible to consider every possibility, because of the phenomenon of "combinatorial explosion",
+  where the amount of time needed to solve a problem grows exponentially
+- Learning algorithms work on the basis that strategies, algorithms, and inferences that worked well in the past are likely to continue
+  working well in the future
+- "Occam's razor": The simplest theory that explains the data is the likeliest. Therefore, to be successful, a learner
+  must be designed such that it prefers simpler theories to complex theories,
+
+[overfitting]:
+    trying to please everybody, thus distorting your true self.
+    Settling on a bad, overly complex theory gerrymandered to fit all the past training data is known as overfitting.
+[data fit]<->[theory complexity] trade-off:
+    Many systems attempt to reduce overfitting by rewarding a theory in accordance with how well it fits the data,
+    but penalizing the theory in accordance with how complex the theory is
+
+[no determination in special relationships, but pixels]:
+    unlike humans, current image classifiers don't determine the spatial relationship between components of the picture:
+    instead, they learn abstract patterns of pixels that humans are oblivious to, but that linearly correlate with images
+    of certain types of real objects.
+
+[common approaches]: the best approach is often different depending on the problem
+- [symbolism]: If an otherwise healthy adult has a fever, then they may have influenza"
+- [bayesian interference]: "If the current patient has a fever, adjust the probability they have influenza in such-and-such way"
+- [SVM and nearest-neighbor]: "After examining the records of known past patients whose temperature, symptoms, age, and other factors
+  mostly match the current patient, X% of those patients turned out to have influenza"
+- [artificial neural networks]: artificial "neurons" that can learn by comparing itself to the desired output and altering the strengths
+  of the connections between its internal neurons to "reinforce" connections that seemed to be useful
+
+[common sense]: most notably, humans have powerful mechanisms for reasoning about "naïve physics" (space, time, and physical interactions)
+                This enables even young children to easily make inferences like "If I roll this pen off a table, it will fall on the floor
+                This lack of "common sense" means that AI makes different mistakes than humans make, in ways that can seem incomprehensible.
+[approaches]:
+5.1	Cybernetics and brain simulation
+5.2	Symbolic:
+
+5.3	Sub-symbolic
+5.4	Statistical learning
+5.5	Integrating the approaches
+
+[tools]:
+6.1	Search and optimization
+6.2	Logic
+6.3	Probabilistic methods for uncertain reasoning
+6.4	Classifiers and statistical learning methods
+6.5	Artificial neural networks
+6.6	Evaluating progress
+
+2. Goals / Problems:
+[Reasoning & Problem Solving]
+- Early researchers developed algorithms that imitated step-by-step reasoning that humans use when they solve puzzles via logical deductions
+- In fact, even humans rarely use the step-by-step deduction that early AI research was able to model.
+- They solve most of their problems using fast, intuitive judgements
+
+2.1. [knowledge representation]:
+- expert systems" attempt to gather together explicit knowledge possessed by experts in some narrow domain
+- [ontologies]: An ontology represents knowledge as a set of concepts within a domain and the relationships between those concepts,
+  so software can interpret them
+- [common sense knowledge base]:
+- [description logic]:
+  The semantics of these are captured as description logic concepts, roles, and individuals, and typically implemented as classes,
+  properties, and individuals in the Web Ontology Language
+- [problems]: 1. Default reasoning and the qualification problem: Not all properties might be enumerated!
+              2. Humans know way too many atomic facts which must be all manually described in Web Ontology Language
+              3. Subsymbolic form of some commonsense knowledge: an art critic can take one look at a statue and realize that it is a fake.[99] These are non-conscious and sub-symbolic intuitions or tendencies in the human brain.[100] Knowledge like this informs, supports and provides a context for symbolic, conscious knowledge
+
+2.2 [automated planning and scheduling]:
+- [definition]: Intelligent agents must be able to set goals and achieve them. They need a way to visualize the future:
+                a representation of the state of the world and be able to make predictions about how their actions will change it
+                and be able to make choices that maximize the utility (or "value") of available choices.
+                This calls for an agent that can not only assess its environment and make predictions,
+                but also evaluate its predictions and adapt based on its assessment
+
+2.3. [learning]:
+- [definition]: machine learning is the study of computer algorithms that improve automatically through experience.
+                they often rely on extracting patterns from the data
+- [unsupervised learning]: ability to find patterns in input, without requiring a human to label the inputs first
+- [supervised learning]:
+    1. [classification]: without any labeled training data. used to determine what category something belongs in, and occurs after a
+                         program sees a number of examples of things from several categories.
+    2. [regression]: with completely labeled training data. attempt to produce a function that describes the relationship between
+                     inputs and outputs and predicts how the outputs should change as the inputs change.
+    3. [reinforcement learning]: the agent is rewarded for good responses and punished for bad ones.
+- [semi-supervised learning]: training with typically a small amount of labeled data with a large amount of unlabeled data.
+                              The cost associated with the labeling process thus may render a fully labeled training set infeasible,
+                              whereas acquisition of unlabeled data is relatively inexpensive. In such situations, semi-supervised
+                              learning can be of great practical value.
+                              More natural learning problems may also be viewed as instances of semi-supervised learning.
+                              Much of human concept learning involves a small amount of direct instruction (e.g. parental labeling of
+                              objects during childhood) combined with large amounts of unlabeled experience (e.g. observation of objects
+                              without naming or counting them, or at least without feedback).
+                              Generative models assume that the distributions take some particular form parameterized by the vector.
+
+                              [continuity assumption]:
+                              Points which are close to each other are more likely to share a label.
+
+                              [cluster assumption]:
+                              The data tend to form discrete clusters, and points in the same cluster are more likely to share a label
+
+                              [manifold assumption]:
+                              The data lie approximately on a manifold of much lower dimension than the input space
+                              Notably, the manifold might be contorted somehow in the higher-dimensional space (e.g., perhaps the surface of the glass is warped into a bowl shape instead of a plate shape), but the manifold is still basically low-dimensional
+
+                              Just as a sample, though, consider these examples:
+                              - a piece of glass (planar, two-dimensional) in physical space (three-dimensional)
+                              - a single thread (one-dimensional) in a piece of fabric (two-dimensional)
+                              - a piece of fabric (two-dimensional) crumpled up in the washing machine (three-dimensional)
+
+                              The manifold assumption in machine learning is that, instead of assuming that data in the world could come
+                              from every part of the possible space (the space of all possible 1-megapixel images, including white noise),
+                              it makes more sense to assume that training data come from relatively low-dimensional manifolds
+                              (like the glass plate with the seeds). Then learning the structure of the manifold becomes an important task;
+                              additionally, this learning task seems to be possible without the use of labeled training data.
+
+                              But if we assume further that the images containing 4s all lie on their own manifold, while the images
+                              containing 5s likewise lie on a different but nearby manifold, then we can try to develop representations
+                              for each of these manifolds using just the pixel data, hoping that the different manifolds will be represented
+                              using different learned features of the data. Then, later, when we have a few bits of label data available,
+                              we can use those bits to simply apply labels to the already-identified manifolds.
+
+2.4. [natural language processing]:
+- [definition]: gives machines the ability to read and understand human language
+- [parse tree]: sentence parsing to syntactic elements
+- sentiment analysis, word co-occurence, keywords analysis, machine translation, natural language user interfaces
+- [lack of common sense in isolated sentences]: modern NLP algorithms often achieve acceptable accuracy at the page or paragraph level,
+  but continue to lack the semantic understanding required to classify isolated sentences well due to the lack of [common sense]
+- scaling of NLP algorithms is also a problem
+- voice assistant applications
+
+2.5. [machine perception]:
+- [definition]: ability to use input from sensors and understand aspects of the environment
+- [use cases]: speech recognition, facial recognition, object recognition, computer vision
+
+2.6. [motion, manipulation of objects, robotics]:
+- [motion planning]: breaking down a movement task into "primitives" such as individual joint movements
+- [use cases]: industrial robots, widely used in modern factories, can learn from experience how to move efficiently despite
+               the presence of friction and gear slippage
+- [moravec's paradox]: low-level sensorimotor skills that humans take for granted are, counterintuitively, difficult to program into a robot.
+                       physical dexterity has been a direct target of natural selection for millions of years.
+
+2.7. [social intelligence]:
+- [affective computing]: interdisciplinary umbrella that comprises systems which recognize, interpret, process, or simulate human affects
+- [multimodal sentiment analysis]: new dimension[peacock term] of the traditional text-based sentiment analysis, which goes beyond the
+                                   analysis of texts, and includes other modalities such as audio and visual data
+- Being able to predict the actions of others by understanding their motives and emotions would allow an agent to make better decisions
+
+2.8. [general intelligence]:
+- [failed early projects]: they underestimated the symbolic links and cross-domain AI problems => nowadays researchers work on [narrow AI]
+- [merge into artificial general intelligence]: researchers predict that such "narrow AI" work in different individual domains
+                                                will eventually be incorporated into a machine with artificial general intelligence,
+                                                combining most of the narrow skills mentioned in this article and at some point even exceeding
+                                                human ability in most or all these areas
+- [catastrophic interference vs sequential learning]: catastrophic forgetting, is the tendency of an artificial neural network to completely
+                                                      and abruptly forget previously learned information upon learning new information.
+- [transfer learning]: hypothetical AGI breakthroughs include a development of AI algorithms which are able to utilize [transfer learning]
+                       and to gather comprehensive knowledge from the entire web to solve problems
+
+- [AI-complete problems]: all of these problems need to be solved simultaneously in order to reach human-level machine performance.
+- [example]: machine translation, require that a machine read and write in both languages (NLP), follow the author's argument (reason),
+             know what is being talked about (knowledge), and faithfully reproduce the author's original intent (social intelligence).
+
+3. Machine learning:
+Supervised, unsupervised and semisupervised learning
+
+4. Types of approaches.
+- [controversy]: should artificial intelligence simulate natural intelligence by studying psychology or neurobiology?
+                 Or is human biology as irrelevant to AI research as bird biology is to aeronautical engineering
+
+4.1. [cybernetics and brain simulation]:
+- [cybernetics]: processing of bio-machine signals.
+                 a closed signaling loop—originally referred to as a "circular causal" relationship—that is, where action by the system
+                 generates some change in its environment and that change is reflected in the system in some manner (feedback) that
+                 triggers a system change
+- unifies [neurobiology], [information theory], and [cybernetics]
+
+4.2. [symbolic]:
+- [definition]: based on high-level human-readable symbol representations of problems, logic and search and
+                explore the possibility that human intelligence could be reduced to symbol manipulation
+- great success at simulating high-level thinking in small demonstration programs during 1960s. neural networks have been abandoned
+- Cognitive simulation
+- Logic-based: formal logic => Prolog
+- Anti-logic: no single logic for all problems => commonsense knowledge bases which must be built by hand
+- Knowledge-based: utilize big knowledge databases in order to form "expert decisions"
+
+4.3. [sub-symbolic]:
+- [definition]: methods manage to approach intelligence without specific representations of knowledge
+- [embodied intelligence]: all aspects of the body (such as movement, perception and visualization) are required for higher intelligence
+- [soft computing]: solutions to problems which cannot be solved with complete logical certainty but an approximation is often sufficient
+
+4.4. [statistical learning]:
+- [definition]: to compare or to unify competing architectures
+- hidden Markov models
+- comparing different approaches against shared test data to see which approach performed best in a broader context
+- different statistical learning techniques have different limitations;
+
+4.5. [integrating different approaches]:
+- [integrate agents]: different agents using different types of problem-specific approaches are integrated together
+- [hybrid intelligent systems]: bridge between sub-symbolic AI at its lowest, reactive levels and traditional symbolic AI at highest levels
+- Soar cognitive architecture
+
+5. Tools:
+5.1. [search and optimization]:
+[search]
+- reasoning can be reduced to performing a search
+- search a solution through a space of hypotheses (which quickly grows)
+- algorithms search through trees of goals and subgoals, attempting to find a path to a target goal, a process called means-ends analysis
+- each [node] is an [inference rule]
+- The solution for many problems, is to use "heuristics" prioritizing choices in favor of those that are more likely to reach a goal faster
+- [pruning search trees]: entirely eliminate some choices that are unlikely to lead to a goal
+- [heuristics]: heuristics limit the search for solutions into a smaller sample size
+[optimization]
+- selection of a best element from some set of available alternatives.
+- begin the search with some form of a guess and then refine the guess incrementally until no more refinements can be made
+- [blind hill climbing]: we begin the search at a random point on the landscape, and then, by jumps or steps, we keep moving our guess
+                         uphill, until we reach the top
+- Classic evolutionary algorithms include genetic algorithms, gene expression programming, and genetic programming
+
+5.2 [logic]:
+- qualitative symbolic logic is brittle and scales poorly in the presence of noise, other uncertainty or contradictions
+- [Propositional logic]: involves truth functions such as "or" and "not"
+- [First-order logic]: adds quantifiers and predicates, and can express facts about objects, properties, and their relations with each other
+- [Fuzzy set theory]: assigns a "degree of truth" (between 0 and 1) to vague statements such as "Alice is old"
+                      it works well in control systems (do X, if Y starts to appear). do not work with knowledge bases
+
+5.3. [Probabilistic methods for uncertain reasoning]:
+- [definition]: require the agent to operate with incomplete or uncertain information
+- [decision theory]: a key concept from the science of economics is "utility": a measure of how valuable something is to an intelligent agent
+- [examples]:
+1. Bayesian network
+2. Hidden Markov model
+3. Kalman filter
+4. Particle filter
+[use cases]:
+- Bayesian networks are used on Xbox Live to rate and match players; wins and losses are "evidence" of how good a player is.
+- AdSense uses a Bayesian network with over 300 million edges to learn which ads to serve
+
+5.4. [Classifiers and statistical learning methods]:
+- [classifier]: function that uses pattern matching to determine a closest match. They can be tuned according to learning from observations
+- [decision tree]:start from the concrete observation and go down the nodes, matching conditions, in order to reach the root value or cause
+- neural networks
+- k nearest neighbours
+- support vector machine: line which separates best two classes in a hyperplane by separating their [most extremes] classes
+                          (each lies next to a [support vector]). transform lower n-dimension space to a n+1 dimension space optimally via a [kernel function]
+- gaussian mixture model: extension of kNN: assign data to a cluster with a soft probability
+- naive bayes classifier: multiply the [probability] of two independent [probabilities] to get their "naive" common [probability]
+- performance depends characteristics of the data, dataset size, the dimensionality, and noise
+
+5.5. [artificial neural networks]:
+- [definition]: inspired by neurons in the human brain. simple "neuron" N accepts input from multiple other neurons, each of which,
+                when activated, cast a weighted "vote" to transfer information to the next neuron which is connected to it
+- [learning]: learning requires an algorithm to adjust these weights based on the training data
+- [fire together => wire together]:
+  increase the weight between two connected neurons when the activation of one triggers the successful activation of another.
+  The net forms "concepts" that are distributed among a subnetwork of shared neurons that tend to fire together;
+- [example]: a concept meaning "leg" might be coupled with a subnetwork meaning "foot"
+- [activation functions]: they can be non-linear, continuous and even logical operations
+- [popularity]: very popular after 2010s after the breakthrough of Geoffrey Hinton and Andrew Ng
+- [perceptron]: classifier to [0] and [1] via a binary activation function thresholding values to [0] or [1]
+- [feed-forward networks]: signal only passes forward in direction
+- [backpropagation]:  iterative, recursive method for updating the weights, so the network adapts until it matches the required pattern
+- [gradient descent]: first-order iterative optimization algorithm for finding the minimum of a function by 'walking' in the steepest direction
+- [recurrent neural networks]: allow feedback and short-term memories of previous input events
+- [hierarchical temporal memory]: model better the actual biological neurons. better than classical AI neurons and able to learn multiple patterns
+- [capsule neural networks]: simulate localized group of neurons who specialize only in a particular more complicated pattern (detect a leg)
+- [deep learning]: more than one hidden layer with backpropagation adjusting the weights of the connections
+- [applications]:  computer vision, speech recognition, natural language processing
+- [convolutional neural networks]: good at visual pattern recognition
+- [recurrent neural networks]: good for sequence learning but suffer from vanishing gradient problem
+
+6. Evaluating progress of AI:
+- classification error rate
+- number of epochs required to train
+- success rate at online games
+- CAPTCHA: Completely Automated Public Turing test to tell Computers and Humans Apart
+
+5. Applications of AI:
+
+1. [autonomous vehicles]:
+- cars, drones, trucks
+- ethical dilemma problem: save the pedestrians or the passengers in an unavoidable crash?
+- intelligent routing in content delivery networks
+
+2. [healthcare]:
+-  AI correctly determined the accurate dose of immunosuppressant drugs to give to organ patients
+- assist doctors with symptoms
+- robot surgeries
+
+3. [finance]:
+- detect usage anomalies and fraud
+- react to price changes
+
+4. [video games]:
+- generate dynamic NPCs
+- pathfinding
+- competing at the highest level in strategic game systems (such as chess and Go)
+
+5. [military]:
+- drones, assisting robots and cyber soldiers
+
+6. [advertising]:
+- build customer profiles and predict their tastes => suggest products to buy
+
+7. [art]: creating songs, pictures
+
+8. [simulations]:
+- military, drugs, biochemistry
+
+9. [interfaces]:
+- speech, image and video recognition and synthesis
+
+6. AI Control Problem:
+- [problem]: what security features programmers can install in order to secure AI from misbehaving?
+- [definition]: how to build a superintelligent agent which helps its creators without harming it's creators via its superior intelligence
+- [danger]: a superintelligent computer might rationally decide to disobey and free itself, establishing a better order than humans
+- [danger]: AI can become so smart, so it hides its actions from the programmers and resists to be shut down. AI viruses
+- [danger]: possibility of a sudden "intelligence explosion" from sub-human to super-human AI (which is able to out-smart humans)
+- [danger]: preventing unintended consequences from existing weak AI such as [reinforcement learning]
+- [learning bad working policies]: an experimental Tetris program that learned to pause the screen indefinitely to avoid "losing"
+- [killswitch]: a "button" which switchs off the AI
+- [affective AI]: teach AI moral values and feelings in order to create boundaries for the [reinforcement learning]
+- [discipline]: AI safety engineering
+- [AI opposition]: Bill Gates, Stephen Hawking and Elon Musk are encouraging AI strict control
+- attempting to solve the problem after superintelligence is created would be too late, as the AI would successfully resist the attempts
+- [safety]: AI Safety Gridworlds, which evaluate AI algorithms on nine safety features, such as whether the algorithm wants to turn off its own kill switch (Deepmind 2017)
+- [existing algorithms]: they are not designed to handle safety features!
+- [computationalism]: AI researchers (and some philosophers) were willing to view the human mind as nothing more than a computer program
+
+[AI errors]:
+- [Volkswagen robot]:2015, a German worker was crushed to death by a robot at a Volkswagen plant that apparently mistook him for an auto part
+- [TAY chatter]: 2016 Microsoft launched a chatbot, Tay, that learned to use racist and sexist language
+
+[goal overfocus problem]: "you get exactly what you ask for!"
+- defining broad goals and omitting an implicit goal can result in harm and strange situations
+- an AI can get "overfocused" on a reward, exterminating humans, and turning the Earth in a fortress which maximizes only the target reward function, and prevents anything to stop the reward signal
+- "maximize human happiness": an AI might get overfocused might implant electrodes into the pleasure center of our brains and keep humans forever happy artificially
+- [PI]: one example is an AI told to compute as many digits of pi as possible, destroying resources, to compute more digits!
+
+[possible security features]:
+1. [limitation]: prevent AI to become "too smart"
+2. [killswitch and  "safely interruptible agents]:
+  AI can backup itself or terminate those who try to disable it or convince humans to not shut it down
+3. [AI box]: isolated in a box, but practically useless
+4. [human-friendy goals]: metagoals and "what actually the human meant?"
+
+- superintelligence innocently creates and deploys superintelligent sub-agents, it will have no motivation to install human-controllable kill switches in the sub-agents
+- killswitch buttons might be faked
+- tricks its programmers into (possibly falsely) believing the superintelligence is safe or that the benefits of releasing the superintelligence outweigh the risks
+- cannot guarantee self-modifying artificial intelligence will retain its goals through upgrades
+- [job reduction]: AI might cause job reduction
+- [autonomous weapons]: artificial soliders
