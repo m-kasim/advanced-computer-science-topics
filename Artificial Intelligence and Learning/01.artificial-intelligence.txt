@@ -407,4 +407,4 @@ Supervised, unsupervised and semisupervised learning
 - tricks its programmers into (possibly falsely) believing the superintelligence is safe or that the benefits of releasing the superintelligence outweigh the risks
 - cannot guarantee self-modifying artificial intelligence will retain its goals through upgrades
 - [job reduction]: AI might cause job reduction
-- [autonomous weapons]: artificial soliders
+- [autonomous weapons]: artificial soldiers

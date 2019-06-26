@@ -1,0 +1,13 @@
+Boosting. Multiple weak classifiers. Voting algorithm. Wisdom of the crowd. Errors and error rate. Overfitting.
+
+1. Boosting.
+
+2. Multiple weak classifiers.
+
+3. Voting algorithm.
+
+4. Wisdom of the crowd.
+
+5. Errors and error rate.
+
+6. Overfitting.

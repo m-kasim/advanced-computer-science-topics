@@ -4,3 +4,6 @@
 8.3	Ethical machines
 8.4	Machine consciousness, sentience and mind
 8.5	Superintelligence
+
+Machine Ethics
+https://en.wikipedia.org/wiki/Artificial_intelligence
