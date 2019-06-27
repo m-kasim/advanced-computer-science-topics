@@ -1,13 +1,123 @@
 Boosting. Multiple weak classifiers. Voting algorithm. Wisdom of the crowd. Errors and error rate. Overfitting.
 
-1. Boosting.
+1. [0.32]🐙  + [0.15]🦄  + [0.12]🐸  = Boosting:
+- [definition]: machine learning ensemble meta-algorithm for primarily reducing bias and variance by converting few [weak learners]
+to strong ones. it is a variation of [bagging]
+- [type]: supervised learning, type of [ensemble methods] group
+- [classification]: binary
+- "Can a set of weak learners create a single strong learner?"
+- [examples]: AdaBoost, CatBoost, LightGBM, XGBoost
+- [weak learner]: classifier that is only slightly correlated with the true classification (it can label examples better than random guessing)
+  |----------------------------|
+  0            0.5   0.6       1
+
+- [strong leaner]: classifier that is arbitrarily well-correlated with the true classification
+|----------------------------|
+0            0.5        0.97 1
+
+
+
+2. 🔥 [AdaBoost]: Adaptive Boosting [https://www.youtube.com/watch?v=GM3CDQfQ4sw]
+- [weak learners]: [AdaBoost] almost always works with [stump trees]
+- in [AdaBoost] all generated are [stumps]
+- [stump]: a tree with 1 [node] and 2 [leaves] => not good at classifications, but binary classification! => [weak learners]
+- [weights] some [stumps] get a better [weight] than others
+- [previous stumps]: the errors of each [stump tree] influence the creation of the next stump
+
+[algorithm]
+0. [initialize]: [all weights] = 1 / [total samples]
+1. first we train the model with [bag 1]:
+- try to determine how well each value defines the outcome
+- [example]: [symptom] => [disease]
+- [gini index]: calculate the gini index for all values
+  Gini coefficient measures the inequality among values of a frequency distribution
+
+2. then we use some of the training data to verify the model => errors occur
+- [error]: the sum of all the classifier [weights] which were wrong
+3. with the second [bag 2], we assign [weights] to the wrongly classified [data points]
+[weight] = 1/2 ln (1 - [total eror] / [total error])
+4. we combine the outputs of both [bags] and we measure their error
+5. [boosting]: each next [bag] gets the data from the previous [bag/classifier] which was not classified correctly by the [bags] before it
+6. In the end we calculate the [errors] of the [positive] or [negative] label to decide which one is correct
 
 2. Multiple weak classifiers.
+- there are many variations of the boosting algorithm
+- different [weak classifiers] make errors at the different part of the feature space
+- [boosting]: while not algorithmically constrained, most boosting algorithms consist of iteratively learning weak classifiers with respect
+  to a distribution and adding them to a final strong classifier.
+- [weights]: they are typically weighted in some way that is usually related to the weak learners' accuracy.
+- After a weak learner is added, the data weights are readjusted, known as "re-weighting"
+- Misclassified input data gain a higher weight and examples that are classified correctly lose weight.
+  Thus, future weak learners focus more on the examples that previous weak learners misclassified.
+- AnyBoost framework,[9] which shows that boosting performs gradient descent in a function space using a convex cost function.
+- Using boosting methods for object categorization is a way to unify the weak classifiers in a special way to boost the overall ability
+  of categorization.
+- [distribution set]: multiple different [weak classifiers] can be combined in an [ensemble] in order to achieve [boosting].
+[example]: we have 3 classifiers which classify
+- [weights]: each classifier is assigned a [weight]. the sum of all weights is [1], because they form a distribution set.
+each time a classification is wrong, it's weight is increased, so the next
+ [AdaBoost]: The two categories are faces versus background. The general algorithm is as follows:
+This work is the first to combine both motion information and appearance information as features to detect a walking person
+
+
+
+multi-class categorization looks for common features that can be shared across the categories at the same time
+
+[multi-class categorization]
+They turn to be more generic edge like features. During learning, the detectors for each category can be trained jointly. Compared with training separately, it generalizes better,
+
+The main flow of the algorithm is similar to the binary case. What is different is that a measure of the joint training error shall be defined in advance. During each iteration the algorithm chooses a classifier of a single feature (features that can be shared by more categories shall be encouraged). This can be done via converting multi-class classification into a binary one (a set of categories versus the rest),[17] or by introducing a penalty error from the categories that do not have the feature of the classifier
+
+ learning via sharing features does a much better job than no sharing, given same boosting rounds. Also, for a given performance level, the total number of features required (and therefore the run time cost of the classifier) for the feature sharing detectors,
 
 3. Voting algorithm.
+[boosting classifier] = sign ( [weight]*[weak classifier 1][x] + [weight]*[weak classifier 2[x] + ... )
+- each of these classifiers is separately looking at the data sample [x]
 
-4. Wisdom of the crowd.
+    [algorithm]:
+    1. Form a large set of simple features
+    2. Initialize [weights] for training images
+    3. For T rounds
+       -> Normalize the weights
+       -> For available features from the set, train a classifier using a single feature and evaluate the training error
+       -> Choose the classifier with the lowest error
+       -> Update the weights of the training images: increase if classified wrongly by this classifier, decrease if correctly
+          Misclassified input data gain a higher weight and examples that are classified correctly lose weigh
+    4. Form the final strong classifier as the linear combination of the T classifiers (coefficient larger if training error is small)
 
+- [the thank-god hole]: the weights of the next generation are a scaled 0.5 of the current weights sum (both positive and negative weights).
+  This was discovered at MIT at the 2000s
+
+4. Wisdom of the crowd of experts
+- [weights]: we are not treating everyone in the crowd equally. we value some opinions more than others via [weights]
+- [experts]: each classifier is an [expert] at a particular space of the problem
+
+[algorithm]:
+1. let all [weights = 1 / number of samples]
+2. pick a [classifier] which minimizes the [error rate] at [time] T
+3. when we have the [error rate (sum of all wrong classifiers)] => compute new [weights]
+4. [weight] = 1/2 ln(1 - error rate / error rate)
+   minimizes the error rate by adding a bound to it and converges to 0
+
+[decision tree stumps]:
+- boosting divides the data point space to chunks with different sizes.
+it intelligently selects the largest continuous space between examples of the same class (instead of putting separate divisions between
+those data points)
+- the decision trees squares wrap so tightly around the [errornous data points] that nothing else fits in the space of that error point! => no overfit
+- usable for higher dimension problems
+
+[example with decision trees stumps]:
+|       |       |
+|                 +
+|       |       |
+|             +
+|    +  |       |
+|
+|_______|_______|__________________
 5. Errors and error rate.
 
 6. Overfitting.
+- Boosting algorithms can be based on convex or non-convex optimization algorithms. Convex algorithms, such as AdaBoost and LogitBoost, can be "defeated" by random noise such that they can't learn basic and learnable combinations of weak hypotheses
+- [!] boosting doesn't seem to overfit, and mention some applications.
+
+TODO: MIT notes
