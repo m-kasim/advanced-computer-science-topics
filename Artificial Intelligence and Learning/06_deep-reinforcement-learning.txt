@@ -1,0 +1,257 @@
+Deep Reinforcement Learning. Policy gradients, hard attention. Q-Learning, Actor-Critic.
+
+0. ✅ 🧠 ➡️ Reinforcement learning:
+- learning by experience from the world, not by presenting ready samples
+- [definition]: A reinforcement learning agent interacts with its environment in discrete time steps.
+At each time [t], the agent receives an observation [o]] which typically includes the reward [r].
+It then chooses an action [a] from the set of available actions, which is subsequently sent to the environment.
+The environment moves to a new state [state+1] and [time+1] and the reward [r+1] associated with the transition is determined.
+The goal of a reinforcement learning agent is to collect as much reward as possible.
+The agent can (possibly randomly) choose any action as a function of the history.
+- [thinking ahead and avoiding regret]:
+In order to act near optimally, the agent must reason about the long term consequences of its actions (i.e., maximize future income),
+although the immediate reward associated with this might be negative.
+- Thus, reinforcement learning is particularly well-suited to problems that include a long-term versus short-term reward trade-off
+- [example]: a child who learns to walk. it is happy if it does not fall and it cries if it alls
+
+- [reinforcement learning - alternative definition]:
+Reinforcement learning involves an agent, a set of states [S], and a set [A] of actions per state.
+By performing an action [A], the agent transitions from state to state.
+Executing an action in a specific state provides the agent with a reward (a numerical score).
+The goal of the agent is to maximize its total (future) reward. It does this by adding the maximum reward attainable from future states
+to the reward for achieving its current state, effectively influencing the current action by the potential future reward.
+This potential reward is a weighted sum of the expected values of the rewards of all future steps starting from the current state.
+
+- [example]: crowded train: let others enter first or enter first and fight inside the crowd?
+
+- also called [approximate dynamic programming] or [neuro-dynamic programming]
+- It differs from supervised learning in that labelled input/output pairs need not be presented, and sub-optimal actions need not be
+explicitly corrected. Instead the focus is finding a balance between exploration (of uncharted territory) and exploitation
+(of current knowledge)
+- The environment is typically formulated as a Markov decision process
+- due to the lack of algorithms that scale well with the number of states (or scale to problems with infinite state spaces),
+  simple exploration methods are the most practical.
+
+- [multi-armed bandit problem]:
+problem in which a fixed limited set of resources must be allocated between competing (alternative) choices in a way that maximizes
+their expected gain, when each choice's properties are only partially known at the time of allocation, and may become better understood
+as time passes.
+The multi-armed bandit can be seen as a set of real distributions [B = {R.1, R.2, ... , R.k}],
+each distribution being associated with the rewards delivered by one of the K∊N levers.
+Let [m.1, m.2, ..., m.k] be the mean values associated with these reward distributions.
+The gambler iteratively plays one lever per round and observes the associated reward.
+The objective is to maximize the sum of the collected rewards.
+The horizon H is the number of rounds that remain to be played.
+The bandit problem is formally equivalent to a [one-state Markov decision process].
+The regret [R]  after [T] rounds is defined as the expected difference between the reward sum associated with an optimal strategy and
+the sum of the collected rewards.
+
+
+- [epsiolon parameter]: tuning parameter, which is sometimes changed, either according to a fixed schedule
+  (making the agent explore less and less), or adaptively based on heuristics
+
+- [epsilon greedy]: the agent chooses the action that it believes has the best long-term effect with probability 1-epsilon.
+                    if no action which satisfies this condition is found => random
+
+- Model:
+[agent interpreter] -> [state]<->[reward]->[action]->[environment]->[agent interpreter]
+- Math:
+[t] - period or step
+[o] - current observation
+[S.environment] States of environment (fully observable, deterministic, stochastic, continuous, etc...)
+[S.agent] States of the agent
+[A]   Available agent actions
+[P]   Probability of transition [state.x] to [state.2] based on an [action]
+[R]   Reward after transition from [state.x] to [state.y]
+- [reduction of available actions]: if the current value of the agent is 3 and the state transition reduces the value by 4,
+the transition will not be allowed
+
+- [full observability] vs [partial observability]: if the agent can see all the environment states
+
+- [main advantages]:
+*) use of samples to optimize performance
+*) use of function approximation to deal with large environments
+
+- [use cases]:
+*) A model of the environment is known, but an analytic solution is not available;
+*) Only a simulation model of the environment is given (the subject of simulation-based optimization)
+*) The only way to collect information about the environment is to interact with it.
+
+- [environment]:
+it gives an actual [state] with a an actual [reward] for that state (and they might be different from the modeled state and reward!)
+
+- [policies]: a function for [state]->[action] which specifies what [action] to take in each [state]
+[optimal policy p*]: maximizes rewards ( [some state] -> [best action] ).
+- precisely: minimize error = [expected reward] - [actual reward]
+- [state] -> [action] -> [reward]
+- [how good is a state] = [value function] of discounted future rewards
+- [how good is state-action] = [Q-value function]
+- [probability P] - we are always quite uncertain in what state me wight move or end up being
+- [bellman equation]: optimal state-ction values (estimated) are known, so then the optimal strategy is to take the action which maximizes the expected value.
+
+The agent's action selection is modeled as a map called policy.
+The search can be further restricted to deterministic stationary policies. A deterministic stationary policy deterministically selects actions based on the current state. Since any such policy can be identified with a mapping from the set of states to the set of actions, these policies can be identified with such mappings with no loss of generality.
+
+- [objective]: maximize discounted cumulutive reward
+
+- [major components of an reinforcement learning agent]:
+*) [ policy ]: agent's behavior function
+*) [ value function]: how good each state/action is
+*) [ model ]: agent's representation of the environment
+[state] -> [action] -> [reward] -> [terminal state]
+- [ agent goal ]: maximize reward
+- [discounted future reward]: R = [ reward.step.1 * discount_factor.1 ] + [reward.step.2 * discount_factor.2]
+  the discounting means the reward is less and less attractive the further away in the future it is.
+  also discounting is helping the function to [converge]
+- "If today was the last day of my life, would I want to do it?" - Steve Jobs
+- [good policy]: maximize [discounted future reward]
+- [example problem]: a robot trying to find the shortest route to the exit inside a maze (every step requires fuel) => search problem
+- the more you increase/decrease reward for the step, the more likely is the [agent] to ignore the danger and proceed for the shortest route,
+despite its stochastic unpredictability
+- [positive/negative reward]: if the reward is negative (punishing), the agent looks for the shortest route. if it's positive => longest
+- [policy]: greatly affected by the [reward structure] and the accuracy of the [environment model]
+- [example]: in a boat race game humans try to pick speed bonuses and avoid crashes to win, while DLR agent presses pause in order to hold the current reward for as long as possible
+- [example 2]: instead of competing, AI boat just collects the coins and avoids ever finishing the race
+- [AI safety problem]: balance [risk] and reward. [example]: cars trying to reach its destination fast but waiting on crosswalks
+
+1. ✅ 🧠 ➡️ 🧠 ➡️ 🧠 Deep Reinforcement Learning:
+- [deep learning]: forming higher order levels of representations of entities
+- [main idea]: decrease the difference between [reality] and a [simulation] (provided by a deep neural network)
+- uses deep learning and reinforcement learning principles in order to create efficient algorithms that can be applied on areas
+like robotics, video games, finance, healthcare
+- [environmental sample] -> [encoder] -> [representation -> [action] -> [actual reward]
+- [neural networks]: combination of [audio] and [video] features to recognize an entity ([example]: duck)
+- merging different types of features however is a problem (audio + video)
+- [definition]: utilize raw signal of data, which are specified to actual classes in order to calculate the state probabilities
+
+2. ☝️ 🌎 ➡️  Policy Gradients Method (On Policy: Stay on policy):
+- converges to local minimums
+- [requires many samples]: very general, but suffer from [variance] => requires a lot of [training samples]
+- find the policy from a space of policies (without knowing the transition properties?)
+- [gradient descent]: decent at estimating parameters. if reward is high > increase probabilities of actions (and vice verse)
+- the steps are averaged out
+- how good an action is = how much discounted future reward it is estimated to generate
+- [list of policies]: optimize them with [gradient descent]
+
+[reinforcement learning approaches]:
+*) [model based]: create a good model of the world, use it it for planning, update it often.
+anticipation provided by the [environment model] gives an ability to make further future predictions.
+efficient with small samples => you just update the model based on observed results
+
+- [on-policy]: directly optimize policy space (while Deep Q-Learning tries to infer an policy after successful steps)
+- if you can't learn a simple Q function, it models easily [continuous actions] via a [policy], but has poor credit assignment
+(average of all steps)
+
+[neural network]:
+- input data: raw pixels
+- output data: chance move up (up -> up -> down -> up -> down)
+
+*) [value based]: learn the states and choose best actions based on the values. exploration is done only as an addon.
+how good it is to be in a state? and sometimes act randomly. they do not rely on policy, but observations
+
+*) [policy based]: learn the stochasting policy which maps successfuly [state] -> [action]. observe policy. explore when needed only
+[example]: Q-learning
+
+3. 😠 👉 😮 🙂 Q-Learning Method (Off Policy: Infer slowly the policies) ):
+- [not always applicable, but efficient]: does not always work, but when it works it's efficient with samples
+- [use case]: when modeling [state]->[action] table is mathematically infeasible
+- [function approximator]: Use a function approximation to estimate [action]->[value] function (policy): Q([state], [action], [weight])
+- [deep Q-learning]: if the approximator is a neural network
+- [neural network]: it calculates (forward pass) the estimated [state]-[action pair] and the backward pass is the difference of the actual observation [state]-[action]
+from the predicted [state]-[action] => updating the [weights] of the neural network accordingly via gradient descent
+- [neural network]: input: pixels, output: Q([state], [action])
+- [definition]: The goal of Q-learning is to learn a policy, which tells an agent what action to take under what circumstances.
+- [model-free]: It does not require a model (hence the connotation "model-free") of the environment
+
+- [algorithm]: For any finite Markov decision process (FMDP), Q-learning finds a policy that is optimal in the sense that it maximizes
+the expected value of the total reward over any and all successive steps, starting from the current state.
+Q = "quality" of an action taken in a given state
+
+- initially all q are 0 but as steps occur, and experience is gained, they are updated.
+
+- [discounting]:
+The discount factor [ ∆ ] determines the importance of future rewards.
+A factor of 0 will make the agent "myopic" (or short-sighted) by only considering current rewards. while a factor approaching 1 will make it strive for a long-term high reward.
+
+the weight for a step from a state [ ∆t ] steps into the future is calculated as [ 𝝲.Δt ]
+[the discount factor] (0 < 𝝲 < 1) and has the effect of valuing rewards received earlier higher than those received later
+[𝝲 gamma]  may also be interpreted as the probability to succeed (or survive) at every step [ ∆t ].
+
+without a terminal state, or if the agent never reaches one, all environment histories become infinitely long, and utilities
+with additive, undiscounted rewards generally become infinite
+
+starting with a lower discount factor and increasing it towards its final value accelerates learning
+
+- [epsilon]: to be more [learning and exploring] or more [exploitative of the current results]
+- [learning rate]: (step size) determines to what extent newly acquired information overrides old information
+A factor of 0 makes the agent learn nothing (exclusively exploiting prior knowledge), while a factor of 1 makes the agent consider
+only the most recent information (ignoring prior knowledge to explore possibilities
+
+- [initial Q.0 values]:
+Since Q-learning is an iterative algorithm, it implicitly assumes an initial condition before the first update occurs.
+High initial values, also known as "optimistic initial conditions", can encourage exploration: no matter what action is selected,
+the update rule will cause it to have lower values than the other alternative, thus increasing their choice probability.
+The first reward [r] can be used to reset the initial conditions.
+According to this idea, the first time an action is taken the reward is used to set the value of [Q].
+This allows immediate learning in case of fixed deterministic rewards.
+RIC seems to be consistent with human behaviour in repeated binary choice experiments
+
+- [implementation]: via a neural network which performs function approximation of the Q-values in the table
+
+- [explonential explosion]: if pixels are represented directly (with their shades), the calculations become infeasible
+to be coded in a table => good representation is required
+
+[neural network]:
+- this is why neural networks could better create [representations] for such problems
+- input: [state] + [action]
+- output: [set of actions] with probability
+- loss function: error = predicted_reward(state, action) - actual_reward(state, action)
+- experience replay: avoid sampling the same input actions (moving once left, leads to moving left more) => train occasionally with random observations
+the sampling is done via [backpropagation]
+
+- [application]: 2014 Google DeepMind patented an application of Q-learning to deep learning for ATARI games
+
+- [deep-Q learning]: Google Deepmind:
+- [definition]: you take your current estimate and augment it with the observed rewards
+- no policy is needed, just roaming in the world and gradually update the table with states vs actions (X and Y)
+- [exploration vs exploitation problem]
+
+deep convolutional neural network, with layers of tiled convolutional filters to mimic the effects of receptive fields.
+Reinforcement learning is unstable or divergent when a nonlinear function approximator such as a neural network is used to represent Q.
+The technique used  - [experience replay] -  a biologically inspired mechanism that uses a random sample of prior actions instead of the
+most recent action to proceed. This removes correlations in the observation sequence and smooths changes in the data distribution.
+Iterative update adjusts Q towards target values that are only periodically updated, further reducing correlations with the target
+
+- [double Q learning]: two separate value functions are trained in a mutually symmetric fashion using separate experiences
+
+4. 🎬💃 ⬅️➡️ ☝️😠 Actor-Critic Methods:
+- combine Q [value-based] and P [policy-based]
+- 2 neural networks:
+- [actor]: policy-based => samples the action from a [policy]
+- [critic]: value-based => measures how good the action is
+- sync global parameters via a [connector]
+- AlphaGo used MonteCarlo tree searches in order to generate its own good solutions and "intuitions" (without supervised training)
+- Alpha go first trained its [policy table] by supervised training from world champions
+- Then using Monte Carlo algorithms, it generated random trees and used localized tree searches to study even more valuable options,
+augmenting its policies
+
+5. 👁 ➡️ 🔢 Hard attention (Recurrent Attention Model):
+- [use case]: image classification
+- [definition]: take a sample of "glimpses" from small regions of an image => try to predict class
+- inspired by human eye movements
+- saves computation resources (no need to process full sized image in its totality)
+- able to ignore irrelevant parts of the image
+
+[algorithm]:
+[state]: glimpses seen so far
+[action]: position (x,y) where to look next for a part of the image
+[reward]: 1 for correct classification, 0 otherwise
+
+- [implementation]: RNN
+- input: pixel data, output: next pixel location (x,y)
+- [final layer softmax]: produce distribution of probabilities which together add up to 1
+
+6. Applications:
+- Robot control and steps
+- Games (Go, Chess)
+- Computer game NPC movement
