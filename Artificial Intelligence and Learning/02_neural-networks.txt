@@ -1,0 +1,102 @@
+Neural Networks. Back propagation. Deep Neural Networks. Convolutional Neural Networks.
+
+1. 🧠 Artificial Neural Networks:
+- [multilayer perceptron] = deep neural network
+- [➡️ input]: pixels
+- [🔀 neural connections] they have [🔋 weights] and they connect neurons. they have multipliers [float +-]
+*) ( [🔘 neuron.1] * [🔋 weight.connection.1] ) + ( [🔘 neuron.2] * [🔋 weight.connection.2] ) + ... ± [⚡️ bias] ) = ...
+*) each [🔘 neuron] has an [📈 activation function] [σ] (sigma) of all all the previous [🔘 neurons] * with their [🔋 weights]
+- [⚡️ bias]: each [🔀 neural connections] has also a [⚡️ bias], which is able to influence (once more) its [📈 activation function]
+  as an extra parameter
+
+- [output]:
+*) class - number [0,1] (how much is the probability it is from that class).
+*) the winner is the [🔘 neuron] with highest probability class in the last [❇️ output] layer
+*) [last line - components]: in a perfect world the last layer are the components of the number/entity
+*) complex components can be broken down to simpler features (edges, lines)
+- [🔘 neuron]: holds a number [0,1]
+- [hidden layers]: all layers between the [➡️ input] and [❇️ output]
+- [📈 activation of neurons]: only some neurons get activated in each layer and their combination determines which neurons in the next layer
+will get activated too. different inputs generate different patterns (which might be similar)
+
+[learning]:
+- finding the correct neural connection [🔋 weights] and additional [⚡️ biases] which can be attached to the [📈 activation functions]
+- [math]: finding the minimum of a function: min (function)
+
+[trivia]:
+- neural networks detect objects mostly by using edges
+- neural networks can recognize digits, but have no idea how to draw them!
+
+[biology]:
+- humans recognize images by piecing together components
+
+[activation functions]:
+*) Sigmoid: σ = 1 / 1 + e^(-x)
+*) Rectified linear unit (ReLU): function returns 0 if it receives any negative input, but for any positive value  x  it returns that value back.
+
+[data sets]:
+- [numbers]: MNIST database contains 60,000 training images and 10,000 testing images
+
+[algorithm]:
+1. initialize random [🔋 weights]
+2. initialize random [⚡️ biases]
+
+[compare prediction to training data]
+----------------------------------------------------------
+| neural network prediction         labeled training data  |
+----------------------------------------------------------
+| class | probability               class | probability    |
+----------------------------------------------------------
+[0]         0.23                     [0]         0.00
+[1]         0.03                     [1]         0.00
+[2]         0.22                     [2]         0.00
+[3]         0.81                     [3]         0.93    <----------
+[4]         0.53                     [4]         0.00
+[5]         0.43                     [5]         0.00
+[6]         0.55                     [6]         0.00
+[7]         0.21                     [7]         0.00
+[8]         0.02                     [8]         0.05
+[9]         0.93                     [9]         0.02
+
+[error rate]:
+- [error rate]: average of all errors (cost of training)
+- show previously unseen (but labeled) training data to the neural network and measure how often it is able to assign their correct labels
+- [cost of training]: (probability.correct - probability.predicted)^2
+the way this formula works is it sums the differences of predicted and training class probabilities of all classes.
+low number => low error rate (vice versa)
+
+2. Backpropagation:
+- [definition]: algorithm for calculating the [gradient descent] effectively.
+a single training example specifies how all weights must be adjusted up or down (in some proportion), as calculated by the [error/cost] function
+
+                                                    |  3.16 |  <-- More important for adjusting the [cost/error function]
+                                                    |  0.02 |
+                                                    | -0.54 |
+                                                    |  0.44 |
+-[gradient] ( [🔋 weights].all , [⚡️ biases].all ) = | -0.92 |  <-- How sensitive the [cost function/error] to each [🔋 weight] and [⚡️ bias]
+                                                    |  1.64 |
+                                                    | -2.25 |
+                                                    |  0.52 |
+                                                    |  0.01 |  <-- Less important for adjusting the [cost/error function]
+
+- [algorithm]: each neuron propagates backward the vector of the [gradient] (which is an average of the values to be modified),
+thus updating the weights
+
+3. Deep Neural Networks:
+
+4. Convolutional Neural Networks:
+- [convolution]: takes a sample of pixels and multiplies their values with a filter which represents a minimized version of a desired feature
+- [pooling]: takes the average (or maximum or etc.) of a large group of neighbouring pixels and reduces it to one value
+
+6. Gradient descent:
+- [local minimum]: it's easier to find a local minimum of a function, based on the [📏 slope]
+- [global maximum]: hard business!
+- [gradient]: it's actually a vector and each value shows which value matters the most for adjusting a weight
+- [👞 step / 📏 slope ratio]: the smaller the slope => the smaller the step (guarantees you to not overshoot and go too far)
+- [gradient]: direction of the steepest ascend of a function
+- [negative gradient]: direction with steepest descent
+
+[ℹ️ algorithm]:
+1. compute [gradient].
+2. take a step in the direction with proportion to the slope of the descent.
+3. repeat
