@@ -1,0 +1,127 @@
+Capsule neural network (CapsNet). Pooling. Capsules. Routing by agreement. Advantages over classic Convolutional neural networks.
+
+1. Capsule neural network (CapsNet):
+- 2000 - Geoffrey Hinton describes an algorithm which uses [parse trees] to represent segmentation in object parts
+- [parse tree]: or derivation tree or concrete syntax tree is an ordered, rooted tree that represents the syntactic structure of a string according to some context-free grammar.
+- 2017 - A dynamic routing mechanism for capsule networks was introduced by Hinton and his team
+- Results were claimed to be considerably better than a CNN on highly overlapped digits
+
+- [definition]: machine learning system that is a type of artificial neural network (ANN) that can be used to better model
+  [hierarchical relationships]
+- The approach is an attempt to more closely mimic biological neural organization
+
+- The idea is to add structures called capsules to a convolutional neural network (CNN), and to reuse output from several of those capsules
+to form more stable (with respect to various perturbations) representations for higher order capsules
+
+- The idea is to add structures called capsules to a convolutional neural network (CNN), and to reuse output from several of those capsules to form more stable (with respect to various perturbations) representations for higher order capsules.
+
+- The output is a vector consisting of the probability of an observation, and a pose for that observation
+
+- [localization]: Localization : Find where the object is and draw a bounding box around it (visible rectangle with colored border)
+- [pose]: position and orientation is referred to as the pose
+- [picasso problem]: CapsNet address images that have all the right parts but that are not in the correct spatial relationship
+  (e.g., in a "face", the positions of the mouth and one eye are switched).
+- [linear object proportions]: image recognition, capsnets exploit the fact that while viewpoint changes have nonlinear effects at the
+  pixel level, they have linear effects at the part/object level
+
+2. Transformations:
+- [computer vision]: the class of an object is expected to be an invariant over many transformations.
+  a cat is still a cat if it is shifted, turned upside down or shrunken in size. However, many other properties are instead equivariant.
+  The volume of a cat changes when it is scaled.
+
+- [invariant]: an object property that does not change as a result of some transformation.
+  Equivariant properties such as a spatial relationship are captured in a pose, data that describes an object's translation, rotation,
+  scale and reflection
+  [example]:  the area of a circle does not change if the circle is shifted to the left
+
+- [equivariant]: is a property that changes predictably under transformation
+  [example]:  the center of a circle moves by the same amount as the circle when shifted
+
+- [nonequivariant]: a property whose value does not change predictably under a transformation
+  [example]: transforming a circle into an ellipse
+
+- [global linear manifold]: Unsupervised capsnets learn a global linear manifold between an object and its pose as a matrix of weights
+  Multiplying the object by the manifold poses the object (for an object, in space)
+
+- capsnets can identify an object independent of its pose, rather than having to learn to recognize the object while including its spatial relationships as part of the object.
+- capsnet learns how an object might look like when it is deformed
+- In capsnets, the pose can incorporate properties other than spatial relationships, e.g., color (cats can be of various colors).
+
+2.Pooling:
+- [pooling]: CapsNet reject the pooling layer strategy of conventional CNNs that reduces the amount of detail to be processed at the next layer.
+- [disadvantages of pooling]:
+    - violates biological shape perception in that it has no intrinsic coordinate frame;
+    - provides invariance (discarding positional information) instead of equivariance (disentangling that information);
+    - ignores the linear manifold that underlies many variations among images;
+    - routes statically instead of communicating a potential "find" to the feature that can appreciate it;
+    - damages nearby feature detectors, by deleting the information they rely upon.
+
+3. Capsules:
+- [definition]: A capsule is a set of neurons that individually activate for various properties of a type of object, such as position,
+size and hue. Formally, a capsule is a set of neurons that collectively produce an activity vector with one element for each neuron
+to hold that neuron's instantiation value (e.g., hue)
+- [vectors]:  The probability of the entity's presence in a specific input is the vector's length, while the vector's orientation
+  quantifies the capsule's properties
+- [scalar vs vector output]: artificial neurons traditionally output a scalar, real-valued activation that loosely represents the probability
+  of an observation. Capsnets replace scalar-output feature detectors with vector-output capsules and max-pooling with routing-by-agreement
+
+- because capsules are independent, when multiple capsules agree, the probability of correct detection is much higher.
+- a minimal cluster of two capsules considering a six-dimensional entity would agree within 10% by chance only once in a million trials.
+- as the number of dimensions increase, the chance agreement across a larger cluster with higher dimensions decreases exponentially
+
+- capsules in higher layers take outputs from capsules at lower layers, and accept those whose outputs cluster.
+- A cluster causes the higher capsule to output a high probability of observation that an entity is present and also output a high-dimensional pose
+- Higher-level capsules ignore outliers, concentrating on clusters
+
+4. Routing by agreement:
+- [parent-child]: The outputs from one capsule (child) are routed to capsules in the next layer (parent) according to the child's ability
+  to predict the parents' output.
+
+- [convergence in scenes]: Over the course of a few iterations, each parents' outputs may converge with the predictions of some children
+  and diverge from those of others, meaning that that parent is present or absent from the scene
+
+- [!]: basically, neurons form capsules (or clusters) which are able to detect transformations of the same entity within their domain.
+if the entity is slightly transformed, another nearby neuron fires, but it still stays within the domain.
+as the capsnet progresses deeper in its layers, these capsules (clusters) of neurons get bigger and bigger
+
+[algorithm]:
+1. each [👶 child] computes a [prediction vector] for its each possible [🧔 parent], by multiplying its output by a
+weight matrix trained by [backpropagation]
+2. Next the output of the [🧔 parent] is computed as the [↗️ scalar product] of a prediction with a coefficient representing
+the probability that this [👶 child] belongs to that [🧔 parent]
+- A child whose predictions are relatively close to the resulting output successively increases the coefficient between that parent and
+child and decreases it for parents that it matches less well
+- This increases the contribution that that child makes to that parent, thus increasing the scalar product of the capsule’s prediction
+with the parent’s output
+- After a few iterations, the coefficients strongly connect a parent to its most likely children, indicating that the presence of the children imply the presence of the parent in the scene.
+- he pose of the parent (reflected in its output) progressively becomes compatible with that of its children
+
+- [capsule]: looks for similar values between n-dimensional vectors
+- highly related different events: september, 11th, new york
+- Human vision examines a sequence of focal points (directed by saccades), processing only a fraction of the scene at its highest resolution
+- Capsnet's transformation matrices learn the (viewpoint independent) spatial relationship between a part and a whole, allowing the
+latter to be recognized based on such relationships
+- Capsnets can also process segmented objects
+- human vision works with linear rectangle coordinate system
+- [example]: a woman can tell you how much a shoe costs, where it is sold and so on, but can't tell you if it's right or left shoe
+unless she slowly calculates your hands positions
+- [face model capsules]: each capsule specializes in detecting the features of a certain class. it also tries to compute the probability
+for instance how far away the nose should be from the mouth and what color it should be. if you recognize an eye, there is a good chance
+this might be a face!
+- [capsules]: they output big vectors which identify the object properties - as an object slightly turns, they also do
+- [caspnet]: by modelling rotation, scaling and transformation properties, capsnet actually model real-life varying properties/classes
+which dramatically reduce the actual labels of the classes a to be learned once these "classes" are present.
+
+5. Advantages over classic Convolutional neural networks:
+[+ advantages]:
+- [Viewpoint invariance]: the use of pose matrices allows capsule networks to recognize objects regardless of the perspective from
+which they are viewed.
+- [Fewer parameters]: Because capsules group neurons, the connections between layers require fewer parameters.
+- [Better generalization to new viewpoints]: CNNs, when trained to understand rotations, often learn that an object can be viewed
+similarly from several different rotations. However, capsule networks generalize better to new viewpoints because pose matrices can capture these characteristics as linear transformations.
+- [Defense against white-box adversarial attacks]: the Fast Gradient Sign Method (FGSM) is a typical method for attacking CNNs.
+It evaluates the gradient of each pixel against the loss of the network, and changes each pixel by at most epsilon (the error term) to maximize the loss. Although this method can drop the accuracy of CNNs dramatically (e.g: to below 20%), capsule networks maintain accuracy above 70%.
+
+- [CNN]: size of the labelled training set must (exponentially) expand to encompass those viewpoints.
+These exponential explosions make them unsuitable for larger problems
+- CNN have to be trained with different angles of the same object recognize it, otherwise they fail!
